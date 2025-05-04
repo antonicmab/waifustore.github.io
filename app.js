@@ -9,12 +9,15 @@ let item = "";
 // Универсальный обработчик для всех кнопок с классом "item-btn"
 document.querySelectorAll(".btn").forEach(btn => {
 	btn.addEventListener("click", () => {
-		const id = btn.dataset.id; // получаем data-id
+		const id = btn.getAttribute("data-id");
+		if (!id) return;
+
 		item = id;
 		tg.MainButton.setText(`Вы выбрали товар ${id}!`);
 		tg.MainButton.show();
 	});
 });
+
 
 // Отправляем выбранный товар в бота
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
