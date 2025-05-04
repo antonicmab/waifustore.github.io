@@ -7,7 +7,7 @@ tg.MainButton.color = '#31B545';
 let item = "";
 
 // Универсальный обработчик для всех кнопок с классом "item-btn"
-document.querySelectorAll(".item-btn").forEach(btn => {
+document.querySelectorAll(".btn").forEach(btn => {
 	btn.addEventListener("click", () => {
 		const id = btn.dataset.id; // получаем data-id
 		item = id;
