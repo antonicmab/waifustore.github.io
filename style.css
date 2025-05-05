@@ -4,6 +4,11 @@ body {
 	font-size: 18px;
 	color: var(--tg-theme-text-color);
 	background: var(--tg-theme-bg-color);
+
+	background-image: url('https://i.imgur.com/7Fb3k7I.png'); /* путь к файлу */
+	background-size: cover;        /* подгоняет по размеру экрана */
+	background-position: center;   /* центрирует */
+	background-repeat: no-repeat;  /* не повторять */
 }
 
 .container {
@@ -13,15 +18,29 @@ body {
 .inner {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 200px 200px 200px;
+	grid-template-rows: auto;
+	gap: 10px;
+	padding: 10px;
 }
 
 .img {
 	width: 150px;
+	max-width: 100%;
+	height: auto;
 }
 
 .item {
 	text-align: center;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+	transition: all 0.3s ease;
+}
+
+/* Make sure items are hidden properly when search doesn't match */
+.item[style*="display: none"] {
+	display: none !important;
 }
 
 .btn {
@@ -33,30 +52,33 @@ body {
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
-
+	cursor: pointer;
 	transition: background .2s linear;
 }
 
 .btn:hover {
-	background: lightgreen;
+	background: rgb(69, 177, 69);
 }
 
 .usercard {
 	text-align: center;
+	margin-top: 20px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 10px;
 }
 
+/* POISK */
+.search-bar {
+	text-align: center;
+	margin: 20px auto;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#searchInput {
+	width: 80%;
+	max-width: 400px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
