@@ -26,6 +26,13 @@ function performSearch() {
 }
 searchInput.addEventListener("input", performSearch);
 
+document.querySelectorAll('.item').forEach(item => {
+    const price = item.querySelector('.btn').getAttribute('data-price');
+    const priceElement = item.querySelector('.price');
+    priceElement.textContent = `${price} ⭐️`;  // Обновляем цену рядом с названием товара
+});
+
+
 
 let item = "";
 let itemPrice = 0;  // для хранения цены товара
