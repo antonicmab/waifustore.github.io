@@ -31,11 +31,11 @@ let item = "";
 // Обработчик выбора товара
 document.querySelectorAll(".btn").forEach(btn => {
 	btn.addEventListener("click", () => {
-		const id = btn.getAttribute("data-id");
-		if (!id) return;
+		const caption = btn.getAttribute("caption");
+		if (!caption) return;
 
-		item = id;
-		tg.MainButton.setText(`Вы выбрали товар ${id}!`);
+		item = caption;
+		tg.MainButton.setText(`Buy set of ${caption}!`);
 		tg.MainButton.show();
 	});
 });
