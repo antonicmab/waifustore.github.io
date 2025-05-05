@@ -32,20 +32,20 @@ let itemPrice = 0;  // для хранения цены товара
 // Обработчик выбора товара
 document.querySelectorAll(".btn").forEach(btn => {
     btn.addEventListener("click", () => {
-        const caption = btn.getAttribute("caption");
-        const price = btn.getAttribute("data-price");  // Получаем цену из атрибута
-        const id = btn.getAttribute("data-id");  // Получаем id товара
+        const caption = btn.getAttribute("data-label");  // <-- исправлено
+        const price = btn.getAttribute("data-price");
+        const id = btn.getAttribute("data-id");
 
         if (!caption || !price || !id) return;
 
-        // Сохраняем выбранные данные
         item = caption;
-        itemPrice = parseInt(price);  // Сохраняем цену как число
+        itemPrice = parseInt(price);
 
         tg.MainButton.setText(`Buy set of ${caption}!`);
         tg.MainButton.show();
     });
 });
+
 
 // // Универсальный обработчик для всех кнопок с классом "item-btn"
 // document.querySelectorAll(".btn").forEach(btn => {
