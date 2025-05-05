@@ -53,7 +53,7 @@ document.querySelectorAll(".btn").forEach(btn => {
         };
         
         // Отправляем данные
-        tg.sendData(JSON.stringify(data));
+        // tg.sendData(JSON.stringify(data));
     });
 });
 
