@@ -44,18 +44,31 @@ document.querySelectorAll(".btn").forEach(btn => {
 
         tg.MainButton.setText(`Buy set of ${caption}!`);
         tg.MainButton.show();
-
-        // Передаем данные в Telegram WebApp
-        const data = {
-            id: id,
-            label: caption,
-            price: itemPrice
-        };
-        
-        // Отправляем данные
-        // tg.sendData(JSON.stringify(data));
     });
 });
+
+// // Универсальный обработчик для всех кнопок с классом "item-btn"
+// document.querySelectorAll(".btn").forEach(btn => {
+// 	btn.addEventListener("click", () => {
+// 		const id = btn.getAttribute("data-id");
+// 		if (!id) return;
+
+// 		item = id;
+// 		tg.MainButton.setText(Вы выбрали товар ${id}!);
+// 		tg.MainButton.show();
+// 	});
+// });
+
+
+// // Отправляем выбранный товар в бота
+// Telegram.WebApp.onEvent("mainButtonClicked", function(){
+// 	tg.sendData(item);
+// });
+
+
+
+
+
 
 // Отправка данных в бот при нажатии главной кнопки
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
