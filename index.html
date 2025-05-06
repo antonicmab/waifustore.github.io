@@ -12,6 +12,19 @@
 			<input type="text" id="searchInput" placeholder="🔎 Search . . .">
 		</form>
 	</div>
+
+	<!-- Корзина в правом верхнем углу -->
+	<div id="cartIcon">
+		🛒 <span id="cartCount">0</span>
+	</div>
+
+	<!-- Модальное окно корзины -->
+	<div id="cartModal" class="hidden">
+		<h2>Your Cart</h2>
+		<ul id="cartItems"></ul>
+		<p>Total: <span id="totalPrice">0</span> ⭐️</p>
+		<button id="checkoutBtn">Buy</button>
+	</div>
 	
 	<div class="container">
 		<div class="inner">
