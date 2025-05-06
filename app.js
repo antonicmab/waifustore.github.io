@@ -26,26 +26,8 @@ function performSearch() {
 }
 searchInput.addEventListener("input", performSearch);
 
-
 let item = "";
 let itemPrice = 0;  // для хранения цены товара
-// Обработчик выбора товара
-// document.querySelectorAll(".btn").forEach(btn => {
-//     btn.addEventListener("click", () => {
-//         const label = btn.getAttribute("data-label");  // <-- исправлено
-//         const price = btn.getAttribute("data-price");
-//         const id = btn.getAttribute("data-id");
-
-//         if (!label || !price || !id) return;
-
-//         item = label;
-//         itemPrice = parseInt(price);
-
-//         tg.MainButton.setText(`Buy set of ${label}!`);
-//         tg.MainButton.show();
-//     });
-// });
-
 
 // Отправка данных в бот при нажатии главной кнопки
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
@@ -56,12 +38,6 @@ Telegram.WebApp.onEvent("mainButtonClicked", function() {
     }));
 });
 
-// Отображаем имя пользователя
-// let usercard = document.getElementById("usercard");
-// let p = document.createElement("p");
-// p.innerText = `${tg.initDataUnsafe.user.first_name ?? ''} ${tg.initDataUnsafe.user.last_name ?? ''}`;
-// usercard.appendChild(p);
-
 let cart = []; // массив товаров
 
 const cartIcon = document.getElementById("cartIcon");
@@ -71,20 +47,32 @@ const cartItems = document.getElementById("cartItems");
 const totalPriceEl = document.getElementById("totalPrice");
 const checkoutBtn = document.getElementById("checkoutBtn");
 
+// Удалять товар при клике по мусорке 🗑
 function updateCartDisplay() {
     cartCount.textContent = cart.length;
     cartItems.innerHTML = "";
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const li = document.createElement("li");
-        li.textContent = `${item.label} - ${item.price} ⭐️`;
+        li.innerHTML = `${item.label} - ${item.price} ⭐️ 
+            <span style="cursor: pointer; color: red; margin-left: 10px;" data-index="${index}">❌</span>`;
         cartItems.appendChild(li);
         total += item.price;
     });
 
     totalPriceEl.textContent = total;
+
+    // Добавляем обработчики на иконки удаления
+    cartItems.querySelectorAll("span[data-index]").forEach(span => {
+        span.addEventListener("click", (e) => {
+            const i = parseInt(e.target.getAttribute("data-index"));
+            cart.splice(i, 1); // Удаляем товар
+            updateCartDisplay(); // Перерисовываем корзину
+        });
+    });
 }
+
 
 // Показываем/скрываем корзину
 cartIcon.addEventListener("click", () => {
@@ -102,6 +90,11 @@ document.querySelectorAll(".btn").forEach(btn => {
 
         cart.push({ id, label, price });
         updateCartDisplay();
+        
+        // Анимация корзинки
+        cartIcon.classList.add("shake");
+        setTimeout(() => cartIcon.classList.remove("shake"), 300);
+        
     });
 });
 
