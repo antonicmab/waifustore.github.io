@@ -73,14 +73,6 @@ body {
 	font-weight: bold;
 }
 
-/* Search bar */
-/* .search-bar {
-    width: 100%;
-    max-width: 360px;
-    margin: 20px auto 10px auto;
-    padding: 0 10px;
-    text-align: center;
-} */
 
 .top-bar {
 	width: 85%;
@@ -93,9 +85,6 @@ body {
 	left: 0;
 	right: 0;
 	z-index: 1000;
-	/* background: rgba(255, 255, 255, 0.1);  */
-	/* backdrop-filter: blur(6px); */
-	/* -webkit-backdrop-filter: blur(6px); */
 }
 
 

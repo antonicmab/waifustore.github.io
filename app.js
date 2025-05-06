@@ -4,6 +4,8 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
 
+
+
 // Поиск товаров
 const searchInput = document.getElementById("searchInput");
 
@@ -47,6 +49,10 @@ const cartItems = document.getElementById("cartItems");
 const totalPriceEl = document.getElementById("totalPrice");
 const checkoutBtn = document.getElementById("checkoutBtn");
 
+
+// Скрыть кнопку "Купить" при загрузке страницы, если корзина пуста
+checkoutBtn.style.display = "none";
+
 // Удалять товар при клике по мусорке 🗑
 function updateCartDisplay() {
     cartCount.textContent = cart.length;
@@ -63,20 +69,25 @@ function updateCartDisplay() {
 
     totalPriceEl.textContent = total;
 
-    // Добавляем обработчики на иконки удаления
+    // Показывать или скрывать кнопку "Купить" в зависимости от общей суммы
+    checkoutBtn.style.display = total > 0 ? "block" : "none";
+
+    // Обработчики на ❌
     cartItems.querySelectorAll("span[data-index]").forEach(span => {
         span.addEventListener("click", (e) => {
             const i = parseInt(e.target.getAttribute("data-index"));
-            cart.splice(i, 1); // Удаляем товар
-            updateCartDisplay(); // Перерисовываем корзину
+            cart.splice(i, 1);
+            updateCartDisplay();
         });
     });
 }
 
-
-// Показываем/скрываем корзину
+// Показываем корзину
 cartIcon.addEventListener("click", () => {
     cartModal.classList.toggle("show");
+
+    // После открытия корзины нужно обновить состояние кнопки
+    updateCartDisplay();
 });
 
 // Добавляем товары в корзину
