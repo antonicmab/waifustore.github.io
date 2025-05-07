@@ -1,128 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
-	<!-- Обертка для поиска и корзины -->
-	<div class="top-bar">
-		<form id="searchForm">
-			<input type="text" id="searchInput" placeholder="🔎 Search . . .">
-		</form>
+    <!-- Обертка для поиска и корзины -->
+    <div class="top-bar">
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="🔎 Search . . .">
+        </form>
 
-		<div id="cartIcon">
-			🛒 <span id="cartCount">0</span>
-		</div>
-	</div>
+        <div id="cartIcon">
+            🛒 <span id="cartCount">0</span>
+        </div>
+    </div>
 
-	<!-- Модальное окно корзины -->
-	<div id="cartModal" class="hidden">
-		<h2>Your Cart</h2>
-		<ul id="cartItems"></ul>
-		<p>Total: <span id="totalPrice">0</span> ⭐️</p>		<button id="checkoutBtn">Buy</button>
-	</div>
-	
-	<div class="container">
-		<div class="inner">
-			<div class="item">
-				<img src="photos/ATOM_EVE.png" alt="" class="img">
-				<p class="caption">Atom Eve <span class="price"> 55 ⭐️</span></p>
-				<button class="btn" data-id="1" data-label="ATOM_EVE" data-price="55">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Rosalina.png" alt="" class="img">
-				<p class="caption">Rosalina <span class="price"> 30 ⭐️</span></p>
-				<button class="btn" data-id="2" data-label="Rosalina" data-price="30">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Ahsoka.png" alt="" class="img">
-				<p class="caption">Ahsoka <span class="price"> 50 ⭐️</span></p>
+    <!-- Модальное окно корзины -->
+    <div id="cartModal" class="hidden">
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <p>Total: <span id="totalPrice">0</span> ⭐️</p>     <button id="checkoutBtn">Buy</button>
+    </div>
+    
+    <div class="container">
+        <div class="inner">
+            <div class="item">
+                <img src="photos/ATOM_EVE.png" alt="" class="img">
+                <p class="caption">Atom Eve </p>
+                <span class="price"> 55 ⭐️</span>
+                <button class="btn" data-id="1" data-label="ATOM_EVE" data-price="55">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Rosalina.png" alt="" class="img">
+                <p class="caption">Rosalina </p>
+                <span class="price"> 30 ⭐️</span>
+                <button class="btn" data-id="2" data-label="Rosalina" data-price="30">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Ahsoka.png" alt="" class="img">
+                <p class="caption">Ahsoka </p>
+				<span class="price"> 50 ⭐️</span>             
 				<button class="btn" data-id="3" data-label="Ahsoka" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Anna.png" alt="" class="img">
-				<p class="caption">Anna <span class="price"> 15 ⭐️</span></p>
-				<button class="btn" data-id="4" data-label="Anna" data-price="15">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Asuka.png" alt="" class="img">
-				<p class="caption">Asuka <span class="price"> 50 ⭐️</span></p>
+            </div>
+            <div class="item">
+                <img src="photos/Anna.png" alt="" class="img">
+                <p class="caption">Anna </p>
+                <span class="price"> 15 ⭐️</span>
+                <button class="btn" data-id="4" data-label="Anna" data-price="15">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Asuka.png" alt="" class="img">
+                <p class="caption">Asuka </p>
+				<span class="price"> 50 ⭐️</span>             
 				<button class="btn" data-id="5" data-label="Asuka" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/ATOM_EVE_2.png" alt="" class="img">
-				<p class="caption">Atom Eve 2 <span class="price"> 50 ⭐️</span></p>
+            </div>
+            <div class="item">
+                <img src="photos/ATOM_EVE_2.png" alt="" class="img">
+                <p class="caption">Atom Eve 2 </p>
+				<span class="price"> 50 ⭐️</span>             
 				<button class="btn" data-id="6" data-label="ATOM_EVE_2" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Aunt_cass_1.png" alt="" class="img">
-				<p class="caption">Aunt Cass 1 <span class="price"> 50 ⭐️</span></p>
+            </div>
+            <div class="item">
+                <img src="photos/Aunt_cass_1.png" alt="" class="img">
+                <p class="caption">Aunt Cass 1 </p>
+   				<span class="price"> 50 ⭐️</span>             
 				<button class="btn" data-id="7" data-label="Aunt_cass_1" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Aunt_cass_2.png" alt="" class="img">
-				<p class="caption">Aunt Cass 2 <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="8" data-label="Aunt_cass_2" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Bulma.png" alt="" class="img">
-				<p class="caption">Bulma <span class="price"> 25 ⭐️</span></p>
-				<button class="btn" data-id="9" data-label="Bulma" data-price="25">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Ciri_1.png" alt="" class="img">
-				<p class="caption">Ciri 1 <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="10" data-label="Ciri_1" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Ciri_2.png" alt="" class="img">
-				<p class="caption">Ciri 2 <span class="price"> 45 ⭐️</span></p>
-				<button class="btn" data-id="11" data-label="Ciri_2" data-price="45">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Daki.png" alt="" class="img">
-				<p class="caption">Daki <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="12" data-label="Daki" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Gwen_Tennyson.png" alt="" class="img">
-				<p class="caption">Gwen Tennyson <span class="price"> 45 ⭐️</span></p>
-				<button class="btn" data-id="13" data-label="Gwen_Tennyson" data-price="45">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Kim_possible.png" alt="" class="img">
-				<p class="caption">Kim Possible <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="14" data-label="Kim_possible" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Kim_possible_2.png" alt="" class="img">
-				<p class="caption">Kim Possible 2 <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="15" data-label="Kim_possible_2" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Kiriko.png" alt="" class="img">
-				<p class="caption">Kiriko <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="16" data-label="Kiriko" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Momo.png" alt="" class="img">
-				<p class="caption">Momo XXL <span class="price"> 50 ⭐️</span></p>
-				<button class="btn" data-id="17" data-label="Momo" data-price="50">Buy</button>
-			</div>
-			<div class="item">
-				<img src="photos/Nani_Pelekai.png" alt="" class="img">
-				<p class="caption">Nani Pelekai <span class="price"> 15 ⭐️</span></p>
-				<button class="btn" data-id="18" data-label="Nani_Pelekai" data-price="15">Buy</button>
-			</div>
+            </div>
+            <div class="item">
+                <img src="photos/Aunt_cass_2.png" alt="" class="img">
+                <p class="caption">Aunt Cass 2 </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="8" data-label="Aunt_cass_2" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Bulma.png" alt="" class="img">
+                <p class="caption">Bulma </p>
+				<span class="price"> 25 ⭐️</span>
+                <button class="btn" data-id="9" data-label="Bulma" data-price="25">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Ciri_1.png" alt="" class="img">
+                <p class="caption">Ciri 1 </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="10" data-label="Ciri_1" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Ciri_2.png" alt="" class="img">
+                <p class="caption">Ciri 2 </p>
+				<span class="price"> 45 ⭐️</span>
+                <button class="btn" data-id="11" data-label="Ciri_2" data-price="45">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Daki.png" alt="" class="img">
+                <p class="caption">Daki </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="12" data-label="Daki" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Gwen_Tennyson.png" alt="" class="img">
+                <p class="caption">Gwen Tennyson </p>
+				<span class="price"> 45 ⭐️</span>
+                <button class="btn" data-id="13" data-label="Gwen_Tennyson" data-price="45">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Kim_possible.png" alt="" class="img">
+                <p class="caption">Kim Possible </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="14" data-label="Kim_possible" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Kim_possible_2.png" alt="" class="img">
+                <p class="caption">Kim Possible 2 </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="15" data-label="Kim_possible_2" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Kiriko.png" alt="" class="img">
+                <p class="caption">Kiriko </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="16" data-label="Kiriko" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Momo.png" alt="" class="img">
+                <p class="caption">Momo XXL </p>
+                <span class="price"> 50 ⭐️</span>
+                <button class="btn" data-id="17" data-label="Momo" data-price="50">Buy</button>
+            </div>
+            <div class="item">
+                <img src="photos/Nani_Pelekai.png" alt="" class="img">
+                <p class="caption">Nani Pelekai </p>
+				<span class="price"> 15 ⭐️</span>
+                <button class="btn" data-id="18" data-label="Nani_Pelekai" data-price="15">Buy</button>
+            </div>
 
-			<div class="item">
-				<img src="photos/Raphtalia.png" alt="" class="img">
-				<p class="caption">Raphtalia <span class="price"> 35 ⭐️</span></p>
-				<button class="btn" data-id="19" data-label="Raphtalia" data-price="35">Buy</button>
-			</div>
+            <div class="item">
+                <img src="photos/Raphtalia.png" alt="" class="img">
+                <p class="caption">Raphtalia </p>
+				<span class="price"> 35 ⭐️</span>
+                <button class="btn" data-id="19" data-label="Raphtalia" data-price="35">Buy</button>
+            </div>
 
 
 
@@ -136,10 +155,10 @@
 
 
 
-		</div>
-	</div>
+        </div>
+    </div>
 
-	<script src="https://telegram.org/js/telegram-web-app.js"></script>
-	<script src="app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html> 
