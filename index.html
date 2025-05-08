@@ -7,28 +7,33 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Обертка для поиска и корзины -->
     <div class="top-bar">
-        <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="🔎 Search . . .">
-        </form>
+        <!-- Первая строка -->
+        <div class="top-row">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="🔎 Search . . .">
+            </form>
     
-        <div class="sort-toggle">
-            <label class="switch">
-                <input type="checkbox" id="sortToggle">
-                <span class="slider"></span>
-            </label>
-            <span class="sort-label" id="sortLabel">Price: ?</span>
+            <div id="cartIcon">
+                🛒 <span id="cartCount">0</span>
+            </div>
         </div>
     
-        <button id="randomSortBtn">🎲</button>
+        <!-- Вторая строка -->
+        <div class="bottom-row">
+            <div class="sort-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="sortToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="sort-label" id="sortLabel">Price: Low → High</span>
+            </div>
     
-        <div id="cartIcon">
-            🛒 <span id="cartCount">0</span>
+            <button id="randomSortBtn">🎲</button>
         </div>
     </div>
     
-    <!-- Модальное окно ВНЕ .top-bar -->
+    <!-- Модальное окно вне .top-bar -->
     <div id="cartModal" class="hidden">
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
