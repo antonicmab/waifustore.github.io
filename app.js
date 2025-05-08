@@ -145,8 +145,29 @@ sortToggle.addEventListener("change", () => {
 	items.forEach(item => container.appendChild(item));
 
 	sortLabel.textContent = sortToggle.checked
-		? "Price: ⬆️"
-		: "Price: ⬇️";
+		? "Price: ⬇️"
+		: "Price: ⬆️";
+});
+// сортировки по data-id
+const idSortToggle = document.getElementById("idSortToggle");
+const idSortLabel = document.getElementById("idSortLabel");
+
+idSortToggle.addEventListener("change", () => {
+    const container = document.querySelector(".inner");
+    const items = Array.from(container.querySelectorAll(".item"));
+
+    items.sort((a, b) => {
+        const idA = parseInt(a.querySelector(".btn").dataset.id);
+        const idB = parseInt(b.querySelector(".btn").dataset.id);
+        return idSortToggle.checked ? idB - idA : idA - idB;
+    });
+
+    // Обновляем DOM
+    items.forEach(item => container.appendChild(item));
+
+    idSortLabel.textContent = idSortToggle.checked
+        ? "Newest first"
+        : "Oldest first";
 });
 
 /* Обработчик случайной сортировки*/
