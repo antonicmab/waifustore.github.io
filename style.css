@@ -49,19 +49,6 @@ body {
 	transition: all 0.3s ease;
 }
 
-/* .btn {
-	display: inline-block;
-	padding: 10px 20px;
-	border: none;
-	background: rgb(248, 168, 24);
-	border-radius: 10px;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: 700;
-	cursor: pointer;
-	transition: background .2s linear;
-} */
-
 .btn:hover {
 	background: rgb(69, 177, 69);
 }
@@ -109,16 +96,16 @@ body {
 
 #searchForm {
     flex: 1;
-    max-width: 200px;
+    max-width: 240px;
 }
 
 #searchInput {
-    width: 100%;
+    width: 95%;
 }
 
 #searchInput {
     flex: 1; /* займёт оставшееся место */
-    max-width: 200px; /* ограничь максимальную ширину */
+    max-width: 240px; /* ограничь максимальную ширину */
     width: auto;
 	padding: 10px 14px;
 	font-size: 16px;

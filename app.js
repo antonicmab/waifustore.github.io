@@ -174,3 +174,5 @@ randomSortBtn.addEventListener('click', () => {
     // Обновляем DOM
     items.forEach(item => container.appendChild(item));
 });
+
+ 
