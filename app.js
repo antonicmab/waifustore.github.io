@@ -109,14 +109,14 @@ document.querySelectorAll(".btn").forEach(btn => {
     });
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const topBar = document.querySelector('.top-bar');
-//     const container = document.querySelector('.container');
+document.addEventListener("DOMContentLoaded", function () {
+    const topBar = document.querySelector('.top-bar');
+    const container = document.querySelector('.container');
 
-//     if (topBar && container) {
-//         container.style.paddingTop = topBar.offsetHeight + 'px';
-//     }
-// });
+    if (topBar && container) {
+        container.style.paddingTop = topBar.offsetHeight + 'px';
+    }
+});
 
 
 // Обработка кнопки "Купить"
