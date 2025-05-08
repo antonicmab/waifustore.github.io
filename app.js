@@ -104,10 +104,11 @@ document.querySelectorAll(".btn").forEach(btn => {
         
         // Анимация корзинки
         cartIcon.classList.add("shake");
-        setTimeout(() => cartIcon.classList.remove("shake"), 300);
+        setTimeout(() => cartIcon.classList.remove("shake"), 600);
         
     });
 });
+
 
 // Обработка кнопки "Купить"
 checkoutBtn.addEventListener("click", () => {
@@ -117,3 +118,50 @@ checkoutBtn.addEventListener("click", () => {
     }));
 });
 
+/* СОРТИРОВАЛКА */
+const sortToggle = document.getElementById("sortToggle");
+const sortLabel = document.getElementById("sortLabel");
+
+sortToggle.addEventListener("change", () => {
+	const container = document.querySelector(".inner");
+	const items = Array.from(container.querySelectorAll(".item"));
+
+	items.sort((a, b) => {
+		const priceA = parseInt(a.querySelector(".btn").dataset.price);
+		const priceB = parseInt(b.querySelector(".btn").dataset.price);
+		return sortToggle.checked ? priceB - priceA : priceA - priceB;
+	});
+
+	// Обновляем DOM
+	items.forEach(item => container.appendChild(item));
+
+	sortLabel.textContent = sortToggle.checked
+		? "Price: ⬆️"
+		: "Price: ⬇️";
+});
+
+/* Обработчик случайной сортировки*/
+const randomSortBtn = document.getElementById('randomSortBtn');
+
+randomSortBtn.addEventListener('click', () => {
+    // Добавляем класс анимации
+    randomSortBtn.classList.add('pressed');
+
+    // Убираем класс через 300 мс (подходит под длительность анимации)
+    setTimeout(() => {
+        randomSortBtn.classList.remove('pressed');
+    }, 300);
+
+    // Перемешиваем элементы
+    const container = document.querySelector('.inner');
+    const items = Array.from(container.querySelectorAll('.item'));
+
+    // Фишер-Йейтс
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    // Обновляем DOM
+    items.forEach(item => container.appendChild(item));
+});

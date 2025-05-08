@@ -12,18 +12,31 @@
         <form id="searchForm">
             <input type="text" id="searchInput" placeholder="🔎 Search . . .">
         </form>
-
+    
+        <div class="sort-toggle">
+            <label class="switch">
+                <input type="checkbox" id="sortToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="sort-label" id="sortLabel">Price: ?</span>
+        </div>
+    
+        <button id="randomSortBtn">🎲</button>
+    
         <div id="cartIcon">
             🛒 <span id="cartCount">0</span>
         </div>
     </div>
-
-    <!-- Модальное окно корзины -->
+    
+    <!-- Модальное окно ВНЕ .top-bar -->
     <div id="cartModal" class="hidden">
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
-        <p>Total: <span id="totalPrice">0</span> ⭐️</p>     <button id="checkoutBtn">Buy</button>
+        <p>Total: <span id="totalPrice">0</span> ⭐️</p>
+        <button id="checkoutBtn">Buy</button>
     </div>
+
+
     
     <div class="container">
         <div class="inner">
