@@ -3,7 +3,7 @@ tg.expand();
 
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
- 
+
 
 
 // Поиск товаров
@@ -101,9 +101,6 @@ document.querySelectorAll(".btn").forEach(btn => {
 
         cart.push({ id, label, price });
         updateCartDisplay();
-
-        // Вибрация при добавлении товара
-        Telegram.WebApp.HapticFeedback.impactOccurred('medium');
         
         // Анимация корзинки
         cartIcon.classList.add("shake");
@@ -199,12 +196,4 @@ randomSortBtn.addEventListener('click', () => {
     items.forEach(item => container.appendChild(item));
 });
 
-/* Кнопка для скрытия фильтров */
-document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('toggleFiltersBtn');
-    const bottomRow = document.querySelector('.bottom-row');
-
-    toggleBtn.addEventListener('click', function () {
-        bottomRow.classList.toggle('hidden');
-    });
-});
+ 
