@@ -196,4 +196,12 @@ randomSortBtn.addEventListener('click', () => {
     items.forEach(item => container.appendChild(item));
 });
 
- 
+/* Кнопка для скрытия фильтров */
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggleFiltersBtn');
+    const bottomRow = document.querySelector('.bottom-row');
+
+    toggleBtn.addEventListener('click', function () {
+        bottomRow.classList.toggle('hidden');
+    });
+});
