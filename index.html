@@ -10,6 +10,7 @@
     <div class="top-bar">
         <!-- Первая строка -->
         <div class="top-row">
+            <button id="toggleFiltersBtn">⚙️</button>
             <form id="searchForm">
                 <input type="text" id="searchInput" placeholder="🔎 Search . . .">
             </form>
@@ -20,22 +21,24 @@
         </div>
     
         <!-- Вторая строка -->
-        <div class="bottom-row">
-            <div class="sort-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="sortToggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="sort-label" id="sortLabel">❔</span>
+        <div class="bottom-row hidden">
+            <div class="bottom-row">
+                <div class="sort-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="sortToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="sort-label" id="sortLabel">❔</span>
+                </div>
+                <div class="sort-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="idSortToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="sort-label" id="idSortLabel">Oldest first</span>
+                </div>
+                <button id="randomSortBtn">🎲</button>
             </div>
-            <div class="sort-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="idSortToggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="sort-label" id="idSortLabel">Oldest first</span>
-            </div>
-            <button id="randomSortBtn">🎲</button>
         </div>
     </div>
     
