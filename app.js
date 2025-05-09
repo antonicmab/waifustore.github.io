@@ -3,7 +3,7 @@ tg.expand();
 
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
-
+ 
 
 
 // Поиск товаров
@@ -101,6 +101,9 @@ document.querySelectorAll(".btn").forEach(btn => {
 
         cart.push({ id, label, price });
         updateCartDisplay();
+
+        // Вибрация при добавлении товара
+        Telegram.WebApp.HapticFeedback.impactOccurred('medium');
         
         // Анимация корзинки
         cartIcon.classList.add("shake");

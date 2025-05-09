@@ -344,8 +344,6 @@ input:checked + .slider::before {
     transform: translateY(1px);
 }
 
-
-
 .hidden {
     display: none;
 }
