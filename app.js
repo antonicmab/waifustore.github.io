@@ -208,3 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
         bottomRow.classList.toggle('hidden');
     });
 });
+
+// Закрытие корзины по клику на крестик
+document.getElementById("closeCartModal").addEventListener("click", () => {
+    cartModal.classList.remove("show");
+});
+
+ 

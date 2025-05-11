@@ -44,7 +44,10 @@
     
     <!-- Модальное окно вне .top-bar -->
     <div id="cartModal" class="hidden">
-        <h2>Your Cart</h2>
+        <div class="cart-modal-header">
+            <h2>Your Cart</h2>
+            <button id="closeCartModal" class="close-btn">✕</button>
+        </div>
         <ul id="cartItems"></ul>
         <p>Total: <span id="totalPrice">0</span> ⭐️</p>
         <button id="checkoutBtn">Buy</button>
