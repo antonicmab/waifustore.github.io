@@ -102,6 +102,13 @@ body {
 
 #searchForm {
     flex: 1;
+    position: relative; /* Для позиционирования корзины внутри */
+    padding-right: 60px; /* Оставляем место для корзины */
+    /* max-width: 240px; */
+}
+
+#searchForm {
+    flex: 1;
     /* max-width: 240px; */
     min-width: 0; /* важно для правильного сжатия */
 }
@@ -166,13 +173,15 @@ body {
 
 /* KORZINA */
 #cartIcon {
-        flex-shrink: 0; /* предотвращает сжатие */
-    margin-left: auto; /* прижимает к правому краю */
+    position: absolute; /* Абсолютное позиционирование */
+    right: 15px; /* Отступ от правого края */
+    top: 50%; /* Выравнивание по вертикали */
+    transform: translateY(-50%); /* Точное выравнивание по центру */
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 7px 12px;
-     background: rgba(255, 150, 130, 0.15);
+    background: rgba(255, 150, 130, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     color: white;
@@ -182,6 +191,7 @@ body {
     -webkit-backdrop-filter: blur(4px);
     transition: background 0.3s ease, transform 0.2s ease;
     user-select: none;
+    margin-left: 10px; /* Отступ от поисковой строки */
 }
 
 #cartIcon:hover {
