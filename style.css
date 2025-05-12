@@ -107,11 +107,7 @@ body {
     /* max-width: 240px; */
 }
 
-#searchForm {
-    flex: 1;
-    /* max-width: 240px; */
-    min-width: 0; /* важно для правильного сжатия */
-}
+ 
 
 /* #searchInput {
     width: 95%;
@@ -339,7 +335,7 @@ input:checked + .slider::before {
  
 /* Кнопка для скрытия фильтров */
 #toggleFiltersBtn {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     padding: 11px 11px;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.2);
