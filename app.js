@@ -265,18 +265,27 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         
-        // Добавляем информацию о пользователе
-        const user = tg.initDataUnsafe?.user;
+        // Проверка наличия user данных
+        if (!tg.initDataUnsafe?.user?.id) {
+            alert("Ошибка авторизации!");
+            return;
+        }
+
         const payload = {
             items: cart,
             totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
-            user_id: user?.id,
-            username: user?.username
+            user_id: tg.initDataUnsafe.user.id,
+            username: tg.initDataUnsafe.user.username || "неизвестно"
         };
         
-        console.log("Отправляемые данные:", payload); // Для отладки
+        console.log("Отправляемые данные:", payload);
         
-        tg.sendData(JSON.stringify(payload));
-        tg.close(); // Закрываем веб-приложение после отправки
+        try {
+            tg.sendData(JSON.stringify(payload));
+            tg.close();
+        } catch (e) {
+            console.error("Ошибка отправки:", e);
+            alert("Ошибка отправки заказа!");
+        }
     });
 });
