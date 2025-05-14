@@ -260,9 +260,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     checkoutBtn?.addEventListener("click", () => {
-        tg.sendData(JSON.stringify({
+        if (cart.length === 0) {
+            alert("Корзина пуста!");
+            return;
+        }
+        
+        // Добавляем информацию о пользователе
+        const user = tg.initDataUnsafe?.user;
+        const payload = {
             items: cart,
-            totalPrice: cart.reduce((sum, item) => sum + item.price, 0)
-        }));
+            totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
+            user_id: user?.id,
+            username: user?.username
+        };
+        
+        console.log("Отправляемые данные:", payload); // Для отладки
+        
+        tg.sendData(JSON.stringify(payload));
+        tg.close(); // Закрываем веб-приложение после отправки
     });
 });
