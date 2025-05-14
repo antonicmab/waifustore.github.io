@@ -274,6 +274,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         
         tg.sendData(JSON.stringify(userData));
-        tg.close(); // Закрываем веб-приложение после отправки
+        // tg.close(); // Закрываем веб-приложение после отправки
     });
 });
