@@ -250,32 +250,54 @@ function adjustLayout() {
 }
 
 // Initialize everything
+// Initialize everything
 document.addEventListener("DOMContentLoaded", function() {
     initializePagination();
     setupSorting();
     adjustLayout();
-
+    
     document.getElementById("closeCartModal")?.addEventListener("click", () => {
         cartModal.classList.remove("show");
     });
 
-    checkoutBtn?.addEventListener("click", () => {
-         
-        if (cart.length === 0) {
-            alert("Your cart is empty!");
-            return;
-        }
-        
-        // Добавляем информацию о пользователе
-        const userData = {
-            user_id: tg.initDataUnsafe.user?.id,
-            username: tg.initDataUnsafe.user?.username || "unknown",
-            items: cart,
-            totalPrice: cart.reduce((sum, item) => sum + item.price, 0)
-         
-        };
-        
-        tg.sendData(JSON.stringify(userData));
-        tg.close(); // Закрываем веб-приложение после отправки
-    });
+    // FIXED CHECKOUT BUTTON HANDLER
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", function() {
+            console.log("Checkout button clicked");
+            
+            if (cart.length === 0) {
+                alert("Корзина пуста!");
+                return;
+            }
+            
+            // Добавляем информацию о пользователе
+            const user = tg.initDataUnsafe?.user;
+            const payload = {
+                items: cart,
+                totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
+                user_id: user?.id,
+                username: user?.username
+            };
+            
+            console.log("Отправляемые данные:", payload); // Для отладки
+            
+            // Provide user feedback
+            tg.showPopup({
+                title: "Processing Order",
+                message: "Please wait while we process your order...",
+                buttons: [{type: "ok"}]
+            });
+            
+            try {
+                tg.sendData(JSON.stringify(payload));
+                // Don't close immediately to allow data to be sent
+                setTimeout(() => tg.close(), 500);
+            } catch (error) {
+                console.error("Error sending data:", error);
+                alert("Error processing your order. Please try again.");
+            }
+        });
+    } else {
+        console.error("Checkout button not found in the DOM");
+    }
 });
