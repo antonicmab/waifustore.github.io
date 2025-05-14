@@ -15,7 +15,7 @@ function initializePagination() {
     const container = document.querySelector(".inner");
     allItems = Array.from(container.querySelectorAll(".item"));
     totalItems = allItems.length;
-    
+
     allItems.forEach(item => item.style.display = "none");
     showPage(currentPage);
     addPaginationControls();
@@ -24,10 +24,10 @@ function initializePagination() {
 function showPage(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
-    
+
     allItems.forEach(item => item.style.display = "none");
     allItems.slice(start, end).forEach(item => item.style.display = "");
-    
+
     currentPage = page;
     updatePaginationControls();
 }
@@ -58,38 +58,38 @@ function addPaginationControls() {
 function updatePaginationControls() {
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
-    
+
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE);
-    
+
     updatePageNumbers();
 }
 
 function updatePageNumbers() {
     const pageNumbers = document.querySelector(".page-numbers");
     if (!pageNumbers) return;
-    
+
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
     pageNumbers.innerHTML = "";
-    
+
     let startPage = Math.max(1, currentPage - 2);
     let endPage = Math.min(totalPages, startPage + 4);
-    
+
     if (endPage - startPage < 4) {
         startPage = Math.max(1, endPage - 4);
     }
-    
+
     if (startPage > 1) {
         addPageButton(1, pageNumbers);
         if (startPage > 2) {
             pageNumbers.appendChild(createEllipsis());
         }
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
         addPageButton(i, pageNumbers);
     }
-    
+
     if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
             pageNumbers.appendChild(createEllipsis());
@@ -118,15 +118,15 @@ function addPageButton(pageNum, container) {
 const searchInput = document.getElementById("searchInput");
 searchInput?.addEventListener("input", () => {
     const searchText = searchInput.value.toLowerCase();
-    
+
     allItems.forEach(itemElement => {
         const captionElement = itemElement.querySelector(".caption");
         if (!captionElement) return;
-        
+
         const caption = captionElement.textContent.trim().toLowerCase();
         itemElement.style.display = caption.includes(searchText) ? "" : "none";
     });
-    
+
     currentPage = 1;
     updatePaginationControls();
 });
@@ -224,7 +224,7 @@ function setupSorting() {
     randomSortBtn?.addEventListener("click", () => {
         randomSortBtn.classList.add("pressed");
         setTimeout(() => randomSortBtn.classList.remove("pressed"), 300);
-        
+
         for (let i = allItems.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [allItems[i], allItems[j]] = [allItems[j], allItems[i]];
@@ -254,29 +254,28 @@ document.addEventListener("DOMContentLoaded", function() {
     initializePagination();
     setupSorting();
     adjustLayout();
-    
+
     document.getElementById("closeCartModal")?.addEventListener("click", () => {
         cartModal.classList.remove("show");
     });
 
     checkoutBtn?.addEventListener("click", () => {
+         
         if (cart.length === 0) {
-            alert("Корзина пуста!");
+            alert("Your cart is empty!");
             return;
         }
         
         // Добавляем информацию о пользователе
-        const user = tg.initDataUnsafe?.user;
-        const payload = {
+        const userData = {
+            user_id: tg.initDataUnsafe.user?.id,
+            username: tg.initDataUnsafe.user?.username || "unknown",
             items: cart,
-            totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
-            user_id: user?.id,
-            username: user?.username
+            totalPrice: cart.reduce((sum, item) => sum + item.price, 0)
+         
         };
         
-        console.log("Отправляемые данные:", payload); // Для отладки
-        
-        tg.sendData(JSON.stringify(payload));
+        tg.sendData(JSON.stringify(userData));
         tg.close(); // Закрываем веб-приложение после отправки
     });
 });
