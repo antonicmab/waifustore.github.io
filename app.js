@@ -260,20 +260,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     checkoutBtn?.addEventListener("click", () => {
-        if (cart.length === 0) {
-            alert("Your cart is empty!");
-            return;
-        }
-        
-        // Добавляем информацию о пользователе
-        const userData = {
-            user_id: tg.initDataUnsafe.user?.id,
-            username: tg.initDataUnsafe.user?.username || "unknown",
+        tg.sendData(JSON.stringify({
             items: cart,
             totalPrice: cart.reduce((sum, item) => sum + item.price, 0)
-        };
-        
-        tg.sendData(JSON.stringify(userData));
-        // tg.close(); // Закрываем веб-приложение после отправки
+        }));
     });
 });
