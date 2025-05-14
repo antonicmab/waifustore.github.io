@@ -4,7 +4,6 @@ tg.expand();
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
 
-
 // Pagination settings
 const ITEMS_PER_PAGE = 12;
 let currentPage = 1;
@@ -16,7 +15,7 @@ function initializePagination() {
     const container = document.querySelector(".inner");
     allItems = Array.from(container.querySelectorAll(".item"));
     totalItems = allItems.length;
-
+    
     allItems.forEach(item => item.style.display = "none");
     showPage(currentPage);
     addPaginationControls();
@@ -25,11 +24,10 @@ function initializePagination() {
 function showPage(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
-
+    
     allItems.forEach(item => item.style.display = "none");
     allItems.slice(start, end).forEach(item => item.style.display = "");
-
-
+    
     currentPage = page;
     updatePaginationControls();
 }
@@ -57,11 +55,10 @@ function addPaginationControls() {
     updatePageNumbers();
 }
 
-
 function updatePaginationControls() {
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
-
+    
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE);
     
@@ -129,7 +126,7 @@ searchInput?.addEventListener("input", () => {
         const caption = captionElement.textContent.trim().toLowerCase();
         itemElement.style.display = caption.includes(searchText) ? "" : "none";
     });
-
+    
     currentPage = 1;
     updatePaginationControls();
 });
@@ -143,55 +140,51 @@ const cartItems = document.getElementById("cartItems");
 const totalPriceEl = document.getElementById("totalPrice");
 const checkoutBtn = document.getElementById("checkoutBtn");
 
-
-
 checkoutBtn.style.display = "none";
-
 
 function updateCartDisplay() {
     cartCount.textContent = cart.length;
     cartItems.innerHTML = "";
-// @@ -68,29 +156,21 @@ function updateCartDisplay() {
-    // });
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${item.label} - ${item.price} ⭐️ 
+            <span style="cursor: pointer; color: red; margin-left: 10px;" data-index="${index}">❌</span>`;
+        cartItems.appendChild(li);
+        total += item.price;
+    });
 
     totalPriceEl.textContent = total;
-
-
     checkoutBtn.style.display = total > 0 ? "block" : "none";
-
 
     cartItems.querySelectorAll("span[data-index]").forEach(span => {
         span.addEventListener("click", (e) => {
             cart.splice(parseInt(e.target.getAttribute("data-index")), 1);
-
             updateCartDisplay();
         });
     });
 }
 
 cartIcon?.addEventListener("click", () => {
-
     cartModal.classList.toggle("show");
-
-
     updateCartDisplay();
 });
-
 
 document.querySelectorAll(".btn").forEach(btn => {
     btn.addEventListener("click", () => {
         const label = btn.getAttribute("data-label");
-// document.querySelectorAll(".btn").forEach(btn => {
+        const price = parseInt(btn.getAttribute("data-price"));
+        const id = btn.getAttribute("data-id");
+
+        if (!label || isNaN(price) || !id) return;
+
         cart.push({ id, label, price });
         updateCartDisplay();
 
-
         Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-
-
         cartIcon.classList.add("shake");
         setTimeout(() => cartIcon.classList.remove("shake"), 600);
-
     });
 });
 
@@ -203,17 +196,7 @@ function sortItems(comparator) {
     showPage(currentPage);
 }
 
-
 function setupSorting() {
-
-
-
-
-
-
-
-
-
     const sortToggle = document.getElementById("sortToggle");
     const sortLabel = document.getElementById("sortLabel");
     const idSortToggle = document.getElementById("idSortToggle");
@@ -222,28 +205,12 @@ function setupSorting() {
 
     sortToggle?.addEventListener("change", () => {
         sortItems((a, b) => {
-
-
-
             const priceA = parseInt(a.querySelector(".btn").dataset.price);
             const priceB = parseInt(b.querySelector(".btn").dataset.price);
             return sortToggle.checked ? priceB - priceA : priceA - priceB;
         });
         sortLabel.textContent = sortToggle.checked ? "Price: ⬇️" : "Price: ⬆️";
-
-
-
-
-
-
     });
-
-
-
-
-
-
-
 
     idSortToggle?.addEventListener("change", () => {
         sortItems((a, b) => {
@@ -252,38 +219,17 @@ function setupSorting() {
             return idSortToggle.checked ? idB - idA : idA - idB;
         });
         idSortLabel.textContent = idSortToggle.checked ? "Newest first" : "Oldest first";
-
-
-
-
-
-
     });
 
     randomSortBtn?.addEventListener("click", () => {
         randomSortBtn.classList.add("pressed");
         setTimeout(() => randomSortBtn.classList.remove("pressed"), 300);
-
-
-
-
+        
         for (let i = allItems.length - 1; i > 0; i--) {
-
-
-
-
-
-
-
-
-
-
             const j = Math.floor(Math.random() * (i + 1));
             [allItems[i], allItems[j]] = [allItems[j], allItems[i]];
         }
         showPage(currentPage);
-
-
     });
 }
 
@@ -314,9 +260,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     checkoutBtn?.addEventListener("click", () => {
-        tg.sendData(JSON.stringify({
+        if (cart.length === 0) {
+            alert("Корзина пуста!");
+            return;
+        }
+        
+        // Добавляем информацию о пользователе
+        const user = tg.initDataUnsafe?.user;
+        const payload = {
             items: cart,
-            totalPrice: cart.reduce((sum, item) => sum + item.price, 0)
-        }));
+            totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
+            user_id: user?.id,
+            username: user?.username
+        };
+        
+        console.log("Отправляемые данные:", payload); // Для отладки
+        
+        tg.sendData(JSON.stringify(payload));
+        tg.close(); // Закрываем веб-приложение после отправки
     });
 });
