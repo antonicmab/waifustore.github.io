@@ -250,48 +250,22 @@ function adjustLayout() {
 }
 
 // Initialize everything
-document.addEventListener("DOMContentLoaded", function () {
-initializePagination();
-setupSorting();
-adjustLayout();
-document.getElementById("closeCartModal")?.addEventListener("click", () => {
-    cartModal.classList.remove("show");
-});
+document.addEventListener("DOMContentLoaded", function() {
+    initializePagination();
+    setupSorting();
+    adjustLayout();
+    
+    document.getElementById("closeCartModal")?.addEventListener("click", () => {
+        cartModal.classList.remove("show");
+    });
 
-checkoutBtn?.addEventListener("click", () => {
-    if (cart.length === 0) {
-        alert("Корзина пуста!");
-        return;
-    }
-
-    const user = tg.initDataUnsafe?.user;
-    const payload = {
-        items: cart,
-        totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
-        user_id: user?.id,
-        username: user?.username
-    };
-
-    console.log("Отправляемые данные:", payload);
-
-    tg.sendData(JSON.stringify(payload));
-    tg.close();
-});
-
-// ✅ Проверка initData и настройка MainButton (вставлено в правильное место)
-if (!tg.initData || !tg.initDataUnsafe?.user) {
-    alert("Пожалуйста, откройте приложение через кнопку из Telegram-бота.");
-    tg.MainButton.hide();
-} else {
-    tg.MainButton.setText("Оплатить");
-    tg.MainButton.show();
-
-    tg.MainButton.onClick(() => {
+    checkoutBtn?.addEventListener("click", () => {
         if (cart.length === 0) {
             alert("Корзина пуста!");
             return;
         }
-
+        
+        // Добавляем информацию о пользователе
         const user = tg.initDataUnsafe?.user;
         const payload = {
             items: cart,
@@ -299,9 +273,10 @@ if (!tg.initData || !tg.initDataUnsafe?.user) {
             user_id: user?.id,
             username: user?.username
         };
-
+        
+        console.log("Отправляемые данные:", payload); // Для отладки
+        
         tg.sendData(JSON.stringify(payload));
-        tg.close();
+        tg.close(); // Закрываем веб-приложение после отправки
     });
-}
 });
