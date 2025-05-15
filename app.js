@@ -270,13 +270,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const payload = {
             items: cart,
             totalPrice: cart.reduce((sum, item) => sum + item.price, 0),
-            user_id: user?.id,
-            username: user?.username
+            // user_id: user?.id,
+            // username: user?.username
         };
         
         console.log("Отправляемые данные:", payload); // Для отладки
         
         tg.sendData(JSON.stringify(payload));
-        tg.close(); // Закрываем веб-приложение после отправки
+        // tg.close(); // Закрываем веб-приложение после отправки
     });
 });
