@@ -193,8 +193,8 @@ body {
 }
 
 #cartIcon:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.05);
+    background: rgba(210, 148, 13, 0.25);
+    transform: translateY(-50%) scale(1.1);
 }
 
 #cartCount {
@@ -406,6 +406,7 @@ input:checked + .slider::before {
     border-color: rgba(255, 120, 120, 0.5);
 }
 
+/* PAGINATION */
 .pagination {
     display: flex;
     justify-content: center;
