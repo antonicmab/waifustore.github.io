@@ -5,7 +5,7 @@ tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
 
 // Pagination settings
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 14;
 let currentPage = 1;
 let totalItems = 0;
 let allItems = [];
