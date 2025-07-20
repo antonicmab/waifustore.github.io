@@ -10,27 +10,34 @@ let currentPage = 1;
 let totalItems = 0;
 let allItems = [];
 
+let filteredItems = [];
+
+
 // Initialize pagination
 function initializePagination() {
     const container = document.querySelector(".inner");
     allItems = Array.from(container.querySelectorAll(".item"));
-    totalItems = allItems.length;
+    filteredItems = [...allItems]; // начально показываем всё
+    totalItems = filteredItems.length;
     
     allItems.forEach(item => item.style.display = "none");
     showPage(currentPage);
     addPaginationControls();
 }
 
+
 function showPage(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
-    
-    allItems.forEach(item => item.style.display = "none");
-    allItems.slice(start, end).forEach(item => item.style.display = "");
-    
+
+    allItems.forEach(item => item.style.display = "none"); // скрываем всё
+    filteredItems.slice(start, end).forEach(item => item.style.display = ""); // показываем нужные
+
     currentPage = page;
+    totalItems = filteredItems.length;
     updatePaginationControls();
 }
+
 
 function addPaginationControls() {
     const paginationDiv = document.querySelector(".pagination");
@@ -118,18 +125,18 @@ function addPageButton(pageNum, container) {
 const searchInput = document.getElementById("searchInput");
 searchInput?.addEventListener("input", () => {
     const searchText = searchInput.value.toLowerCase();
-    
-    allItems.forEach(itemElement => {
+
+    filteredItems = allItems.filter(itemElement => {
         const captionElement = itemElement.querySelector(".caption");
-        if (!captionElement) return;
-        
+        if (!captionElement) return false;
         const caption = captionElement.textContent.trim().toLowerCase();
-        itemElement.style.display = caption.includes(searchText) ? "" : "none";
+        return caption.includes(searchText);
     });
-    
+
     currentPage = 1;
-    updatePaginationControls();
+    showPage(currentPage); // обновляем страницу с учётом фильтра
 });
+
 
 // Cart functionality
 let cart = [];
