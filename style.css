@@ -490,3 +490,245 @@ input:checked + .slider::before {
     padding: 0 0.3rem;
     font-size: 1.2rem;
 }
+
+
+
+/* Стили для выбора категорий */
+.category-selector {
+    position: relative;
+    width: 100%;
+    max-width: 390px;
+    margin: 10px auto 0;
+    z-index: 10;
+}
+
+#categoryToggleBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(25, 28, 33, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+#categoryToggleBtn:hover {
+    background-color: rgba(69, 177, 69, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+#categoryDropdown {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(25, 28, 33, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: none;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+#categoryDropdown.show {
+    display: block;
+}
+
+.category-option {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.category-option:hover {
+    background-color: rgba(69, 177, 69, 0.3);
+}
+
+.category-option:last-child {
+    border-bottom: none;
+}
+
+/* Анимация для кнопки при открытии */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#categoryDropdown.show {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+
+
+
+
+
+
+
+
+/* Стили для фильтров */
+.filter-container {
+    display: flex;
+    gap: 10px;
+    padding: 0 10px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 390px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter-selector {
+    position: relative;
+    flex: 1;
+}
+
+.filter-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: rgba(25, 28, 33, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.filter-btn:hover {
+    background-color: rgba(69, 177, 69, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.filter-dropdown {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(25, 28, 33, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: none;
+    overflow: hidden;
+    margin-top: 5px;
+    z-index: 100;
+}
+
+.filter-dropdown.show {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.filter-option {
+    display: flex; /* Используем flex для всех вариантов */
+    align-items: center;
+    justify-content: center; /* Центрируем по горизонтали */
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Fredoka', sans-serif;
+    text-align: center; /* Дублируем для совместимости */
+    gap: 10px; /* Расстояние между иконкой и текстом */
+}
+
+.filter-option:hover {
+    background-color: rgba(69, 177, 69, 0.3);
+}
+
+.filter-option:last-child {
+    border-bottom: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Общие стили для скроллбаров в выпадающих списках */
+.filter-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(248, 168, 24, 0.8) rgba(25, 28, 33, 0.2);
+    padding-right: 3px; /* Чтобы контент не заезжал под скроллбар */
+}
+
+/* Стилизация скроллбара для Chrome/Safari */
+.filter-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-dropdown::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.filter-dropdown::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+        rgba(248, 168, 24, 0.9) 0%, 
+        rgba(248, 210, 100, 0.8) 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.filter-dropdown::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+        rgba(248, 180, 40, 1) 0%, 
+        rgba(248, 220, 120, 0.9) 100%);
+    box-shadow: 0 0 6px rgba(248, 168, 24, 0.6);
+}
+
+/* Анимация скроллбара */
+.filter-dropdown::-webkit-scrollbar-thumb {
+    transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Плавное появление скроллбара при наведении */
+.filter-dropdown {
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.4s ease;
+}
+
+.filter-dropdown:hover {
+    scrollbar-color: rgba(248, 168, 24, 0.8) rgba(25, 28, 33, 0.2);
+}
+
+.filter-dropdown::-webkit-scrollbar-thumb {
+    opacity: 0.5;
+}
+
+.filter-dropdown:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+

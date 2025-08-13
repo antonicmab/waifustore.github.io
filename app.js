@@ -5,6 +5,8 @@ tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#31B545';
 
 // Pagination settings
+// let currentCategory = 'all';
+// let currentAnime = 'all';
 const ITEMS_PER_PAGE = 20;
 let currentPage = 1;
 let totalItems = 0;
@@ -12,12 +14,31 @@ let allItems = [];
 
 let filteredItems = [];
 
+// Заменим старые переменные на этот объект
+let filters = {
+    type: 'all',
+    anime: 'all',
+    search: ''
+};
+
 
 // Initialize pagination
 function initializePagination() {
     const container = document.querySelector(".inner");
     allItems = Array.from(container.querySelectorAll(".item"));
-    filteredItems = [...allItems]; // начально показываем всё
+    
+    // Добавляем атрибуты по умолчанию
+    allItems.forEach(item => {
+        const btn = item.querySelector(".btn");
+        if (!btn.hasAttribute('data-tags')) {
+            btn.setAttribute('data-tags', 'default');
+        }
+        if (!btn.hasAttribute('data-anime')) {
+            btn.setAttribute('data-anime', 'all');
+        }
+    });
+    
+    filteredItems = [...allItems];
     totalItems = filteredItems.length;
     
     allItems.forEach(item => item.style.display = "none");
@@ -261,6 +282,8 @@ document.addEventListener("DOMContentLoaded", function() {
     initializePagination();
     setupSorting();
     adjustLayout();
+    initTypeFilter();
+    initAnimeFilter();
     
     document.getElementById("closeCartModal")?.addEventListener("click", () => {
         cartModal.classList.remove("show");
@@ -287,3 +310,206 @@ document.addEventListener("DOMContentLoaded", function() {
         tg.close(); // Закрываем веб-приложение после отправки
     });
 });
+
+
+
+
+/////////////////////////////////////////////////////////////////
+// Функция для фильтрации по категории
+function filterByCategory(category) {
+    currentCategory = category;
+    
+    // Обновляем текст кнопки
+    const toggleBtn = document.getElementById('categoryToggleBtn');
+    if (toggleBtn) {
+        const categoryText = category === 'all' ? 'All Items' : 
+                        //    category === 'default' ? 'Default' :
+                           category === 'legs' ? 'Legs' :
+                           category === 'milf' ? 'Milf' :
+                           category === 'asian' ? 'Asian' : category;
+        toggleBtn.textContent = `Category: ${categoryText} ▼`;
+    }
+    
+    // Применяем фильтр
+    filteredItems = allItems.filter(itemElement => {
+        if (category === 'all') return true;
+        const btn = itemElement.querySelector(".btn");
+        const tags = btn.getAttribute("data-tags");
+        return tags && tags.includes(category);
+    });
+    
+    currentPage = 1;
+    showPage(currentPage);
+    hideCategoryDropdown();
+}
+
+// Функции для показа/скрытия dropdown
+function toggleCategoryDropdown() {
+    const dropdown = document.getElementById('categoryDropdown');
+    dropdown.classList.toggle('show');
+}
+
+function hideCategoryDropdown() {
+    const dropdown = document.getElementById('categoryDropdown');
+    dropdown.classList.remove('show');
+}
+
+// Инициализация категорий
+function initCategorySelector() {
+    // Обработчик для основной кнопки
+    document.getElementById('categoryToggleBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleCategoryDropdown();
+    });
+    
+    // Обработчики для вариантов выбора
+    document.querySelectorAll('.category-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const category = e.target.getAttribute('data-category');
+            filterByCategory(category);
+        });
+    });
+    
+    // Закрытие dropdown при клике вне его
+    document.addEventListener('click', hideCategoryDropdown);
+}
+
+// Обновим функцию initializePagination
+function initializePagination() {
+    const container = document.querySelector(".inner");
+    allItems = Array.from(container.querySelectorAll(".item"));
+    
+    // Добавляем теги по умолчанию, если их нет
+    allItems.forEach(item => {
+        const btn = item.querySelector(".btn");
+        if (!btn.hasAttribute('data-tags')) {
+            btn.setAttribute('data-tags', 'default');
+        }
+    });
+    
+    filteredItems = [...allItems];
+    totalItems = filteredItems.length;
+    
+    allItems.forEach(item => item.style.display = "none");
+    showPage(currentPage);
+    addPaginationControls();
+}
+
+// Обновим функцию searchInput
+searchInput?.addEventListener("input", () => {
+    const searchText = searchInput.value.toLowerCase();
+
+    filteredItems = allItems.filter(itemElement => {
+        // Проверяем фильтр по категории
+        if (currentCategory !== 'all') {
+            const btn = itemElement.querySelector(".btn");
+            const tags = btn.getAttribute("data-tags");
+            if (!tags || !tags.includes(currentCategory)) return false;
+        }
+        
+        // Проверяем поисковый запрос
+        const captionElement = itemElement.querySelector(".caption");
+        if (!captionElement) return false;
+        const caption = captionElement.textContent.trim().toLowerCase();
+        return caption.includes(searchText);
+    });
+
+    currentPage = 1;
+    showPage(currentPage);
+});
+
+
+
+
+
+
+
+
+
+// Функция для применения всех фильтров
+function applyAllFilters() {
+    const searchText = searchInput.value.toLowerCase();
+    filters.search = searchText;
+
+    filteredItems = allItems.filter(itemElement => {
+        const btn = itemElement.querySelector(".btn");
+        if (!btn) return false;
+        
+        // Проверяем фильтр по типу
+        if (filters.type !== 'all') {
+            const tags = btn.getAttribute("data-tags");
+            if (!tags || !tags.includes(filters.type)) return false;
+        }
+        
+        // Проверяем фильтр по аниме
+        if (filters.anime !== 'all') {
+            const animeTag = btn.getAttribute("data-anime");
+            if (!animeTag || animeTag !== filters.anime) return false;
+        }
+        
+        // Проверяем поисковый запрос
+        if (filters.search) {
+            const captionElement = itemElement.querySelector(".caption");
+            if (!captionElement) return false;
+            const caption = captionElement.textContent.trim().toLowerCase();
+            if (!caption.includes(filters.search)) return false;
+        }
+        
+        return true;
+    });
+    
+    currentPage = 1;
+    showPage(currentPage);
+}
+
+
+// Инициализация фильтра по типу
+function initTypeFilter() {
+    const typeToggleBtn = document.getElementById('typeToggleBtn');
+    const typeDropdown = document.getElementById('typeDropdown');
+    
+    typeToggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        typeDropdown.classList.toggle('show');
+    });
+    
+    document.querySelectorAll('#typeDropdown .filter-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filters.type = e.target.getAttribute('data-type');
+            typeToggleBtn.textContent = `Type: ${e.target.textContent} ▼`;
+            applyAllFilters();
+            typeDropdown.classList.remove('show');
+        });
+    });
+}
+
+// Инициализация фильтра по аниме
+function initAnimeFilter() {
+    const animeToggleBtn = document.getElementById('animeToggleBtn');
+    const animeDropdown = document.getElementById('animeDropdown');
+    
+    animeToggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        animeDropdown.classList.toggle('show');
+    });
+    
+    document.querySelectorAll('#animeDropdown .filter-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filters.anime = e.target.getAttribute('data-anime');
+            animeToggleBtn.textContent = `Anime: ${e.target.textContent} ▼`;
+            applyAllFilters();
+            animeDropdown.classList.remove('show');
+        });
+    });
+}
+
+// Обновленный поиск
+searchInput?.addEventListener("input", () => {
+    filters.search = searchInput.value.toLowerCase();
+    applyAllFilters();
+});
+
+
