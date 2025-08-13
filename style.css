@@ -215,8 +215,8 @@ body {
     top: 60px;
     right: 20px;
     background: rgba(27, 26, 26, 0.255);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    /* backdrop-filter: blur(16px); */
+    /* -webkit-backdrop-filter: blur(16px); */
     border-radius: 12px;
     color: #fff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -526,7 +526,7 @@ input:checked + .slider::before {
 #categoryDropdown {
     position: absolute;
     width: 100%;
-    background-color: rgba(25, 28, 33, 0.9);
+    /* background-color: rgba(25, 28, 33, 0.9); */
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -583,25 +583,28 @@ input:checked + .slider::before {
 
 
 /* Стили для фильтров */
+/* Обновленные стили для фильтров */
 .filter-container {
     display: flex;
-    gap: 10px;
+    gap: 8px; /* Уменьшил отступ между кнопками */
     padding: 0 10px;
     margin-top: 10px;
-    width: 100%;
+    width: calc(100%); /* Учитываем padding */
     max-width: 390px;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box; /* Важно! */
 }
 
 .filter-selector {
     position: relative;
     flex: 1;
+    min-width: 0; /* Помогает с переполнением */
 }
 
 .filter-btn {
     width: 100%;
-    padding: 10px;
+    padding: 10px 8px; /* Уменьшил горизонтальные отступы */
     font-size: 14px;
     font-weight: bold;
     background-color: rgba(25, 28, 33, 0.8);
@@ -613,26 +616,47 @@ input:checked + .slider::before {
     -webkit-backdrop-filter: blur(4px);
     transition: all 0.3s ease;
     text-align: center;
-}
-
-.filter-btn:hover {
-    background-color: rgba(69, 177, 69, 0.3);
-    border-color: rgba(255, 255, 255, 0.6);
+    box-sizing: border-box; /* Важно! */
+    white-space: nowrap; /* Текст в одну строку */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Троеточие если не помещается */
 }
 
 .filter-dropdown {
     position: absolute;
     width: 100%;
-    background-color: rgba(25, 28, 33, 0.9);
+    background-color: #1a1d23; /* Полностью непрозрачный темный фон */
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     display: none;
     overflow: hidden;
     margin-top: 5px;
     z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(248, 168, 24, 0.8) rgba(25, 28, 33, 0.2);
+    padding-right: 3px;
+    box-sizing: border-box;
+}
+
+/* Для мобильных устройств можно добавить адаптацию */
+@media (max-width: 400px) {
+    .filter-btn {
+        font-size: 13px;
+        padding: 10px 5px;
+    }
+    
+    .filter-option {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+}
+
+.filter-btn:hover {
+    background-color: rgba(69, 177, 69, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .filter-dropdown.show {
