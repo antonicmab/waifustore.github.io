@@ -31,7 +31,7 @@ function initializePagination() {
     allItems.forEach(item => {
         const btn = item.querySelector(".btn");
         if (!btn.hasAttribute('data-tags')) {
-            btn.setAttribute('data-tags', 'default');
+            btn.setAttribute('data-tags', 'all');
         }
         if (!btn.hasAttribute('data-anime')) {
             btn.setAttribute('data-anime', 'all');
@@ -51,12 +51,43 @@ function showPage(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
 
-    allItems.forEach(item => item.style.display = "none"); // скрываем всё
-    filteredItems.slice(start, end).forEach(item => item.style.display = ""); // показываем нужные
-
+    // Скрываем все элементы
+    allItems.forEach(item => item.style.display = "none");
+    
+    // Показываем только элементы текущей страницы
+    const itemsToShow = filteredItems.slice(start, end);
+    itemsToShow.forEach(item => item.style.display = "");
+    
+    // Обновляем текущую страницу
     currentPage = page;
-    totalItems = filteredItems.length;
-    updatePaginationControls();
+    
+    // Предзагружаем следующую страницу
+    if (page < Math.ceil(totalItems / ITEMS_PER_PAGE)) {
+        const nextPageStart = page * ITEMS_PER_PAGE;
+        const nextPageEnd = nextPageStart + ITEMS_PER_PAGE;
+        filteredItems.slice(nextPageStart, nextPageEnd).forEach(item => {
+            // Можно добавить предзагрузку контента здесь
+        });
+    }
+}
+
+async function loadPageItems(page) {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    
+    // Если товары уже загружены, возвращаем их
+    if (filteredItems.slice(start, end).every(item => item.dataset.loaded === "true")) {
+        return filteredItems.slice(start, end);
+    }
+
+    // Имитация загрузки с сервера (замените на реальный fetch)
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const itemsToShow = filteredItems.slice(start, end);
+            itemsToShow.forEach(item => item.dataset.loaded = "true");
+            resolve(itemsToShow);
+        }, 300); // Задержка для демонстрации
+    });
 }
 
 
@@ -86,10 +117,15 @@ function addPaginationControls() {
 function updatePaginationControls() {
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
+    const pageNumbers = document.querySelector(".page-numbers");
     
-    if (prevBtn) prevBtn.disabled = currentPage === 1;
-    if (nextBtn) nextBtn.disabled = currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE);
+    if (!prevBtn || !nextBtn || !pageNumbers) return;
     
+    // Обновляем состояние кнопок
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE);
+    
+    // Обновляем номера страниц
     updatePageNumbers();
 }
 
@@ -216,71 +252,21 @@ document.querySelectorAll(".btn").forEach(btn => {
     });
 });
 
-// Sort functionality
-function sortItems(comparator) {
-    const container = document.querySelector(".inner");
-    allItems.sort(comparator);
-    allItems.forEach(item => container.appendChild(item));
-    showPage(currentPage);
-}
-
-function setupSorting() {
-    const sortToggle = document.getElementById("sortToggle");
-    const sortLabel = document.getElementById("sortLabel");
-    const idSortToggle = document.getElementById("idSortToggle");
-    const idSortLabel = document.getElementById("idSortLabel");
-    const randomSortBtn = document.getElementById('randomSortBtn');
-
-    sortToggle?.addEventListener("change", () => {
-        sortItems((a, b) => {
-            const priceA = parseInt(a.querySelector(".btn").dataset.price);
-            const priceB = parseInt(b.querySelector(".btn").dataset.price);
-            return sortToggle.checked ? priceB - priceA : priceA - priceB;
-        });
-        sortLabel.textContent = sortToggle.checked ? "Price: ⬇️" : "Price: ⬆️";
-    });
-
-    idSortToggle?.addEventListener("change", () => {
-        sortItems((a, b) => {
-            const idA = parseInt(a.querySelector(".btn").dataset.id);
-            const idB = parseInt(b.querySelector(".btn").dataset.id);
-            return idSortToggle.checked ? idB - idA : idA - idB;
-        });
-        idSortLabel.textContent = idSortToggle.checked ? "Newest first" : "Oldest first";
-    });
-
-    randomSortBtn?.addEventListener("click", () => {
-        randomSortBtn.classList.add("pressed");
-        setTimeout(() => randomSortBtn.classList.remove("pressed"), 300);
-        
-        for (let i = allItems.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allItems[i], allItems[j]] = [allItems[j], allItems[i]];
-        }
-        showPage(currentPage);
-    });
-}
 
 // Layout adjustments
 function adjustLayout() {
     const topBar = document.querySelector('.top-bar');
     const container = document.querySelector('.container');
-    const toggleBtn = document.getElementById('toggleFiltersBtn');
-    const bottomRow = document.querySelector('.bottom-row');
 
     if (topBar && container) {
         container.style.paddingTop = topBar.offsetHeight + 'px';
     }
-
-    toggleBtn?.addEventListener('click', function() {
-        bottomRow.classList.toggle('hidden');
-    });
 }
 
 // Initialize everything
 document.addEventListener("DOMContentLoaded", function() {
     initializePagination();
-    setupSorting();
+    // setupSorting();
     adjustLayout();
     initTypeFilter();
     initAnimeFilter();
@@ -295,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         
-        // Добавляем информацию о пользователе
         const user = tg.initDataUnsafe?.user;
         const payload = {
             items: cart,
@@ -304,12 +289,79 @@ document.addEventListener("DOMContentLoaded", function() {
             username: user?.username
         };
         
-        console.log("Отправляемые данные:", payload); // Для отладки
-        
+        console.log("Отправляемые данные:", payload);
         tg.sendData(JSON.stringify(payload));
-        tg.close(); // Закрываем веб-приложение после отправки
+        tg.close();
     });
 });
+
+// Новая функция инициализации с ленивой загрузкой
+function initializeLazyPagination() {
+    const container = document.querySelector(".inner");
+    // Получаем только структуру элементов без полной загрузки
+    allItems = Array.from(container.querySelectorAll(".item"));
+    
+    // Инициализируем базовые атрибуты
+    allItems.forEach(item => {
+        item.style.display = "none"; // Скрываем все элементы изначально
+        const btn = item.querySelector(".btn");
+        if (!btn.hasAttribute('data-tags')) {
+            btn.setAttribute('data-tags', 'all');
+        }
+        if (!btn.hasAttribute('data-anime')) {
+            btn.setAttribute('data-anime', 'all');
+        }
+    });
+    
+    filteredItems = [...allItems];
+    totalItems = filteredItems.length;
+    
+    // Загружаем и показываем первую страницу
+    loadPage(1);
+    addPaginationControls();
+}
+
+// Модифицированная функция загрузки страницы
+async function loadPage(page) {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    
+    // Скрываем все элементы
+    allItems.forEach(item => item.style.display = "none");
+    
+    // Загружаем элементы для текущей страницы
+    const itemsToShow = await getPageItems(page);
+    itemsToShow.forEach(item => item.style.display = "");
+    
+    currentPage = page;
+    updatePaginationControls();
+    
+    // Предзагружаем следующую страницу
+    if (page < Math.ceil(totalItems / ITEMS_PER_PAGE)) {
+        preloadPage(page + 1);
+    }
+}
+
+// Функция получения элементов страницы
+async function getPageItems(page) {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    
+    // В реальном приложении здесь может быть fetch-запрос
+    // Для демонстрации просто возвращаем элементы из filteredItems
+    return filteredItems.slice(start, end);
+}
+
+// Функция предзагрузки страницы
+async function preloadPage(page) {
+    await getPageItems(page);
+    // В реальном приложении можно предварительно загружать контент
+}
+
+// Обновляем функцию showPage
+function showPage(page) {
+    loadPage(page);
+}
 
 
 
@@ -380,19 +432,19 @@ function initializePagination() {
     const container = document.querySelector(".inner");
     allItems = Array.from(container.querySelectorAll(".item"));
     
-    // Добавляем теги по умолчанию, если их нет
+    // Инициализация атрибутов
     allItems.forEach(item => {
         const btn = item.querySelector(".btn");
-        if (!btn.hasAttribute('data-tags')) {
-            btn.setAttribute('data-tags', 'default');
-        }
+        if (!btn.hasAttribute('data-tags')) btn.setAttribute('data-tags', 'all');
+        if (!btn.hasAttribute('data-anime')) btn.setAttribute('data-anime', 'all');
     });
     
+    // Первичная фильтрация
     filteredItems = [...allItems];
     totalItems = filteredItems.length;
     
-    allItems.forEach(item => item.style.display = "none");
-    showPage(currentPage);
+    // Показываем первую страницу
+    showPage(1);
     addPaginationControls();
 }
 
@@ -436,19 +488,21 @@ function applyAllFilters() {
         const btn = itemElement.querySelector(".btn");
         if (!btn) return false;
         
-        // Проверяем фильтр по типу
+        // Фильтр по типу
         if (filters.type !== 'all') {
             const tags = btn.getAttribute("data-tags");
-            if (!tags || !tags.includes(filters.type)) return false;
+            if (!tags) return false;
+            const tagArray = tags.split(',').map(tag => tag.trim());
+            if (!tagArray.includes(filters.type)) return false;
         }
         
-        // Проверяем фильтр по аниме
+        // Фильтр по аниме
         if (filters.anime !== 'all') {
             const animeTag = btn.getAttribute("data-anime");
             if (!animeTag || animeTag !== filters.anime) return false;
         }
         
-        // Проверяем поисковый запрос
+        // Фильтр по поиску
         if (filters.search) {
             const captionElement = itemElement.querySelector(".caption");
             if (!captionElement) return false;
@@ -459,7 +513,14 @@ function applyAllFilters() {
         return true;
     });
     
+    // Обновляем общее количество элементов
+    totalItems = filteredItems.length;
+    
+    // Сбрасываем на первую страницу
     currentPage = 1;
+    
+    // Обновляем отображение
+    updatePaginationControls();
     showPage(currentPage);
 }
 
@@ -507,9 +568,28 @@ function initAnimeFilter() {
 }
 
 // Обновленный поиск
+let searchTimeout;
 searchInput?.addEventListener("input", () => {
-    filters.search = searchInput.value.toLowerCase();
-    applyAllFilters();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        applyAllFilters();
+    }, 300);
 });
 
+// Предзагрузка следующих страниц
+function preloadNextPages(currentPage) {
+    // Предзагружаем следующую страницу
+    const nextPage = currentPage + 1;
+    if (nextPage <= Math.ceil(totalItems / ITEMS_PER_PAGE)) {
+        loadPageItems(nextPage);
+    }
+}
 
+function cleanupHiddenItems() {
+    const hiddenItems = document.querySelectorAll('.item[style="display: none;"]');
+    hiddenItems.forEach(item => {
+        if (!item.dataset.keepInDom) {
+            item.remove();
+        }
+    });
+}

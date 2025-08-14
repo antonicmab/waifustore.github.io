@@ -67,8 +67,8 @@ body {
 
 .top-bar {
     width: 100%;
-    max-width: 390px; /* соответствует вашему .container */
-    margin: 0 auto;
+    max-width: 390px; /* НОВОЕ: Ограничивает ширину до 390px */
+    margin: 0 auto; /* НОВОЕ: Центрирует панель */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -76,15 +76,13 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0; /* Оставьте это для фиксации, но content будет внутри max-width */
     z-index: 1000;
-    
-    /* background-color: rgba(25, 28, 33, 0.9); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); */
-    /* box-sizing: border-box; */
+    /* background-color: rgba(25, 28, 33, 0.9); */ /* Если хотите фон */
+    /* backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); */
+    box-sizing: border-box;
 }
-
 
 .top-row,
 .bottom-row {
@@ -172,7 +170,7 @@ body {
 /* KORZINA */
 #cartIcon {
     position: absolute; /* Абсолютное позиционирование */
-    right: 15px; /* Отступ от правого края */
+    right: 0px; /* Отступ от правого края */
     top: 50%; /* Выравнивание по вертикали */
     transform: translateY(-50%); /* Точное выравнивание по центру */
     display: inline-flex;
@@ -198,15 +196,20 @@ body {
 }
 
 #cartCount {
-    background-color: rgb(224, 0, 0);
+    background-color: #e00000; /* насыщенный красный */
     color: white;
     padding: 2px 6px;
-    border-radius: 50%;
+    border-radius: 999px; /* идеально круглый/овальный */
     font-size: 12px;
-    min-width: 16px;
-    min-height: 16px;
+    font-weight: bold;
+    min-width: 18px;
+    min-height: 18px;
     text-align: center;
-    line-height: 16px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 #cartModal {
@@ -589,7 +592,7 @@ input:checked + .slider::before {
     gap: 8px; /* Уменьшил отступ между кнопками */
     padding: 0 10px;
     margin-top: 10px;
-    width: calc(100%); /* Учитываем padding */
+    width: calc(100%); 
     max-width: 390px;
     margin-left: auto;
     margin-right: auto;
