@@ -83,7 +83,7 @@ body {
     /* -webkit-backdrop-filter: blur(10px); */
     box-sizing: border-box;
 
-    background-color: var(--tg-theme-bg-color); /* Добавьте фон, чтобы не было видно контента под панелью */
+    /* background-color: var(--tg-theme-bg-color);   */
     transition: transform 0.3s ease-in-out; /* Плавный переход */
 }
 
