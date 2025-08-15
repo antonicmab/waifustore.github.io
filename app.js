@@ -18,8 +18,51 @@ let filteredItems = [];
 let filters = {
     type: 'all',
     anime: 'all',
-    search: ''
+    search: '',
+    sort: 'none' // 'none', 'price-asc', 'price-desc', 'alphabetical'
 };
+
+
+// Function to apply sorting
+function applySorting() {
+    if (filters.sort === 'none') {
+        // If no specific sort is selected, maintain the current filtered order
+        // (which is implicitly the initial order or order after filtering)
+        return;
+    }
+
+    filteredItems.sort((a, b) => {
+        const aBtn = a.querySelector(".btn");
+        const bBtn = b.querySelector(".btn");
+
+        if (!aBtn || !bBtn) {
+            // Handle cases where buttons might be missing, though they should exist
+            return 0;
+        }
+
+        const aLabel = aBtn.getAttribute("data-label") || "";
+        const bLabel = bBtn.getAttribute("data-label") || "";
+        const aPrice = parseFloat(aBtn.getAttribute("data-price")) || 0;
+        const bPrice = parseFloat(bBtn.getAttribute("data-price")) || 0;
+
+        switch (filters.sort) {
+            case 'price-asc':
+                return aPrice - bPrice;
+            case 'price-desc':
+                return bPrice - aPrice;
+            case 'alphabetical':
+                return aLabel.localeCompare(bLabel);
+            default:
+                return 0;
+        }
+    });
+
+    // After sorting, reset to the first page and display
+    currentPage = 1;
+    showPage(currentPage);
+    updatePaginationControls();
+}
+
 
 
 // Initialize pagination
@@ -51,24 +94,36 @@ function showPage(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
 
-    // Скрываем все элементы
-    allItems.forEach(item => item.style.display = "none");
-    
-    // Показываем только элементы текущей страницы
+    const container = document.querySelector(".inner"); // Get the container once
+    if (!container) return; // Defensive check
+
+    // 1. Clear the current visible items from the container
+    container.innerHTML = ''; // This will remove all child elements
+
+    // 2. Get the items to show for the current page from the *sorted* filteredItems
     const itemsToShow = filteredItems.slice(start, end);
-    itemsToShow.forEach(item => item.style.display = "");
-    
-    // Обновляем текущую страницу
+
+    // 3. Append them to the container in their new order
+    itemsToShow.forEach(item => {
+        item.style.display = ""; // Ensure they are visible
+        container.appendChild(item); // Re-append to the DOM
+    });
+
+    // Update current page
     currentPage = page;
-    
-    // Предзагружаем следующую страницу
+
+    // Optional: Preload the next page (if lazy loading is desired for performance)
     if (page < Math.ceil(totalItems / ITEMS_PER_PAGE)) {
         const nextPageStart = page * ITEMS_PER_PAGE;
         const nextPageEnd = nextPageStart + ITEMS_PER_PAGE;
         filteredItems.slice(nextPageStart, nextPageEnd).forEach(item => {
-            // Можно добавить предзагрузку контента здесь
+            // You can add preloading content logic here if needed,
+            // but the main issue is re-appending for visual sort
         });
     }
+
+    // Update pagination controls after showing the page
+    updatePaginationControls();
 }
 
 async function loadPageItems(page) {
@@ -270,6 +325,7 @@ document.addEventListener("DOMContentLoaded", function() {
     adjustLayout();
     initTypeFilter();
     initAnimeFilter();
+    initSortFilter(); // Add this line
     
     document.getElementById("closeCartModal")?.addEventListener("click", () => {
         cartModal.classList.remove("show");
@@ -358,10 +414,10 @@ async function preloadPage(page) {
     // В реальном приложении можно предварительно загружать контент
 }
 
-// Обновляем функцию showPage
-function showPage(page) {
-    loadPage(page);
-}
+// // Обновляем функцию showPage
+// function showPage(page) {
+//     loadPage(page);
+// }
 
 
 
@@ -487,42 +543,70 @@ function applyAllFilters() {
     filteredItems = allItems.filter(itemElement => {
         const btn = itemElement.querySelector(".btn");
         if (!btn) return false;
-        
-        // Фильтр по типу
+
+        // Filter by type
         if (filters.type !== 'all') {
             const tags = btn.getAttribute("data-tags");
             if (!tags) return false;
             const tagArray = tags.split(',').map(tag => tag.trim());
             if (!tagArray.includes(filters.type)) return false;
         }
-        
-        // Фильтр по аниме
+
+        // Filter by anime
         if (filters.anime !== 'all') {
             const animeTag = btn.getAttribute("data-anime");
             if (!animeTag || animeTag !== filters.anime) return false;
         }
-        
-        // Фильтр по поиску
+
+        // Filter by search
         if (filters.search) {
             const captionElement = itemElement.querySelector(".caption");
             if (!captionElement) return false;
             const caption = captionElement.textContent.trim().toLowerCase();
             if (!caption.includes(filters.search)) return false;
         }
-        
+
         return true;
     });
-    
-    // Обновляем общее количество элементов
+
+    // Apply sorting AFTER filtering
+    applySorting();
+
     totalItems = filteredItems.length;
-    
-    // Сбрасываем на первую страницу
-    currentPage = 1;
-    
-    // Обновляем отображение
+    currentPage = 1; // Always go to the first page after applying filters/sort
     updatePaginationControls();
     showPage(currentPage);
 }
+
+
+// Initialize Sorting Filter
+function initSortFilter() {
+    const sortToggleBtn = document.getElementById('sortToggleBtn'); // Renamed ID
+    const sortDropdown = document.getElementById('sortDropdown');   // Renamed ID
+
+    sortToggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sortDropdown.classList.toggle('show');
+    });
+
+    document.querySelectorAll('#sortDropdown .filter-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filters.sort = e.target.getAttribute('data-sort');
+            sortToggleBtn.textContent = `Sort By: ${e.target.textContent} ▼`; // Update button text
+            applyAllFilters(); // Reapply filters which now includes sorting
+            sortDropdown.classList.remove('show');
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sortDropdown.contains(e.target) && !sortToggleBtn.contains(e.target)) {
+            sortDropdown.classList.remove('show');
+        }
+    });
+}
+
 
 
 // Инициализация фильтра по типу

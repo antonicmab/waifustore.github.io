@@ -19,7 +19,23 @@
         </div>
     
         
+
         <!-- Фильтры -->
+
+        <div class="filter-selector">
+            <button id="sortToggleBtn" class="filter-btn">Sort By ▼</button>
+            <div id="sortDropdown" class="filter-dropdown hidden scrollable-dropdown">
+                <button class="filter-option" data-sort="price-asc">Price: Low to High ⬇️</button>
+                <button class="filter-option" data-sort="price-desc">Price: High to Low ⬆️</button>
+                <button class="filter-option" data-sort="alphabetical">Alphabetical (A-Z) 🔠</button>
+            </div>
+        </div>
+
+        <!-- <button id="sortToggleBtn" class="filter-btn" type="button">Sort By ▼</button> -->
+        <!-- <div id="sortDropdown" class="filter-dropdown hidden"> -->
+
+        <!-- </div> -->
+
         <div class="filter-container">
             <!-- Фильтр по типу -->
             <div class="filter-selector">
@@ -1434,7 +1450,7 @@
                 <img src="photos/Esil_Sololeveling_2.webp" alt="" class="img">
                 <p class="caption">Esil Sololeveling 2 </p>
                 <span class="price"> 50 ⭐️</span>             
-                <button class="btn" data-id="224" data-label="Esil_Sololeveling_2" data-price="50">Buy</button>
+                <button class="btn" data-id="224" data-label="Esil_Sololeveling_2" data-price="50" data-anime="sololeveling">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Evelyn_Azur_1.webp" alt="" class="img">
@@ -3817,9 +3833,9 @@
             </div>
             <div class="item">
                 <img src="photos/Ochaco_Uraraka.webp" alt="" class="img">
-                <p class="caption">Ochaco Uraraka </p>
+                <p class="caption">Ochako Uraraka </p>
                 <span class="price"> 35 ⭐️</span>             
-                <button class="btn" data-id="618" data-label="Ochaco_Uraraka" data-price="35">Buy</button>
+                <button class="btn" data-id="618" data-label="Ochaco_Uraraka" data-price="35" data-anime="myheroacademia">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Rika.webp" alt="" class="img">
