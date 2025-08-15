@@ -677,3 +677,20 @@ function cleanupHiddenItems() {
         }
     });
 }
+
+// Переменные для отслеживания прокрутки
+let lastScrollTop = 0;
+const filtersWrapper = document.querySelector('.filters-wrapper'); // Получаем элемент-обертку для фильтров
+
+window.addEventListener('scroll', () => {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > 0) {
+        // Если прокрутка не на самом верху, скрываем фильтры
+        filtersWrapper.classList.add('hidden-on-scroll');
+    } else {
+        // Если прокрутка на самом верху (currentScroll === 0), показываем фильтры
+        filtersWrapper.classList.remove('hidden-on-scroll');
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Это можно оставить, хотя в данном случае оно не влияет на логику показа/скрытия
+});

@@ -82,7 +82,15 @@ body {
     /* backdrop-filter: blur(10px); */
     /* -webkit-backdrop-filter: blur(10px); */
     box-sizing: border-box;
+
+    background-color: var(--tg-theme-bg-color); /* Добавьте фон, чтобы не было видно контента под панелью */
+    transition: transform 0.3s ease-in-out; /* Плавный переход */
 }
+
+.top-bar.hidden-on-scroll {
+    transform: translateY(-100%); /* Сдвигает панель вверх, скрывая ее */
+}
+
 
 .top-row,
 .bottom-row {
@@ -580,7 +588,17 @@ input:checked + .slider::before {
 
 
 
+.filters-wrapper {
+    display: flex; /* Сделайте его flex-контейнером */
+    flex-wrap: wrap; /* Разрешает перенос на новую строку */
+    gap: 5px; /* Уменьшите расстояние между фильтрами */
+    transition: transform 0.3s ease-in-out; /* Плавный переход для скрытия/появления */
+    justify-content: center; /* Выравнивание кнопок по центру */
+}
 
+.filters-wrapper.hidden-on-scroll {
+    transform: translateY(-200%); /* Сдвигает панель фильтров вверх, скрывая ее */
+}
 
 
 
@@ -589,9 +607,9 @@ input:checked + .slider::before {
 /* Обновленные стили для фильтров */
 .filter-container {
     display: flex;
-    gap: 8px; /* Уменьшил отступ между кнопками */
-    padding: 0 10px;
-    margin-top: 10px;
+    gap: 10px; /* Уменьшил отступ между кнопками */
+    padding: auto;
+    margin-top: 0px;
     width: calc(100%); 
     max-width: 390px;
     margin-left: auto;
@@ -759,4 +777,5 @@ input:checked + .slider::before {
     opacity: 1;
 }
 
- 
+
+

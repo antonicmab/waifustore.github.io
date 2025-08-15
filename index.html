@@ -7,21 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="top-bar">
-        <!-- Первая строка -->
-        <div class="top-row">
-            <form id="searchForm">
-                <input type="text" id="searchInput" placeholder="🔎 Search . . .">
-                <div id="cartIcon">
-                    🛒 <span id="cartCount">0</span>
-                </div>
-            </form>
-        </div>
-    
-        
+<div class="top-bar">
+    <div class="top-row">
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="🔎 Search . . .">
+            <div id="cartIcon">
+                🛒 <span id="cartCount">0</span>
+            </div>
+        </form>
+    </div>
 
-        <!-- Фильтры -->
-
+    <div class="filters-wrapper">
         <div class="filter-selector">
             <button id="sortToggleBtn" class="filter-btn">Sort By ▼</button>
             <div id="sortDropdown" class="filter-dropdown hidden scrollable-dropdown">
@@ -31,13 +27,7 @@
             </div>
         </div>
 
-        <!-- <button id="sortToggleBtn" class="filter-btn" type="button">Sort By ▼</button> -->
-        <!-- <div id="sortDropdown" class="filter-dropdown hidden"> -->
-
-        <!-- </div> -->
-
         <div class="filter-container">
-            <!-- Фильтр по типу -->
             <div class="filter-selector">
                 <button id="typeToggleBtn" class="filter-btn">Types ▼</button>
                 <div id="typeDropdown" class="filter-dropdown hidden scrollable-dropdown">
@@ -45,17 +35,9 @@
                     <button class="filter-option" data-type="legs">🦵 Feet</button>
                     <button class="filter-option" data-type="asian">🔥 Asian</button>
                     <button class="filter-option" data-type="milf">💦 MILF</button>
-                    <!-- Дополнительные типы при необходимости -->
-                    <!-- <button class="filter-option" data-type="tits">Tits</button>
-                    <button class="filter-option" data-type="ass">Ass</button>
-                    <button class="filter-option" data-type="cosplay">Cosplay</button>
-                    <button class="filter-option" data-type="bikini">Bikini</button>
-                    <button class="filter-option" data-type="lingerie">Lingerie</button>
-                    <button class="filter-option" data-type="feet">Feet</button> -->
                 </div>
             </div>
                     
-            <!-- Фильтр по аниме -->
             <div class="filter-selector">
                 <button id="animeToggleBtn" class="filter-btn">Anime ▼</button>
                 <div id="animeDropdown" class="filter-dropdown hidden scrollable-dropdown">
@@ -80,8 +62,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+</div>
     
     <!-- Модальное окно вне .top-bar -->
     <div id="cartModal" class="hidden">
