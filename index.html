@@ -7,63 +7,65 @@
     <title>Document</title>
 </head>
 <body>
-<div class="top-bar">
-    <div class="top-row">
-        <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="🔎 Search . . .">
-            <div id="cartIcon">
-                🛒 <span id="cartCount">0</span>
-            </div>
-        </form>
-    </div>
-
-    <div class="filters-wrapper">
-        <div class="filter-selector">
-            <button id="sortToggleBtn" class="filter-btn">Sort By ▼</button>
-            <div id="sortDropdown" class="filter-dropdown hidden scrollable-dropdown">
-                <button class="filter-option" data-sort="price-asc">Price: Low to High ⬇️</button>
-                <button class="filter-option" data-sort="price-desc">Price: High to Low ⬆️</button>
-                <button class="filter-option" data-sort="alphabetical">Alphabetical (A-Z) 🔠</button>
-            </div>
+    <div class="top-bar">
+        <div class="top-row">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="🔎 Search . . .">
+                <div id="cartIcon">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+            </form>
         </div>
 
-        <div class="filter-container">
+        <div class="filters-wrapper">
             <div class="filter-selector">
-                <button id="typeToggleBtn" class="filter-btn">Types ▼</button>
-                <div id="typeDropdown" class="filter-dropdown hidden scrollable-dropdown">
-                    <button class="filter-option" data-type="all">🌐 All Types</button>
-                    <button class="filter-option" data-type="legs">🦵 Feet</button>
-                    <button class="filter-option" data-type="asian">🔥 Asian</button>
-                    <button class="filter-option" data-type="milf">💦 MILF</button>
+                <button id="sortToggleBtn" class="filter-btn">Sort By ▼</button>
+                <div id="sortDropdown" class="filter-dropdown hidden scrollable-dropdown">
+                    <button class="filter-option" data-sort="price-asc">Price: Low to High ⬇️</button>
+                    <button class="filter-option" data-sort="price-desc">Price: High to Low ⬆️</button>
+                    <button class="filter-option" data-sort="alphabetical">Alphabetical (A-Z) 🔠</button>
                 </div>
             </div>
-                    
-            <div class="filter-selector">
-                <button id="animeToggleBtn" class="filter-btn">Anime ▼</button>
-                <div id="animeDropdown" class="filter-dropdown hidden scrollable-dropdown">
-                    <button class="filter-option" data-anime="all">All Anime 🌐</button>
-                    <button class="filter-option" data-anime="arcane">Arcane 🎭</button>
-                    <button class="filter-option" data-anime="blackclover">Black Clover 🍀</button>
-                    <button class="filter-option" data-anime="bleach">Bleach ⚔️</button>
-                    <button class="filter-option" data-anime="chainsawman">Chainsaw Man 🔪</button>
-                    <button class="filter-option" data-anime="dandadan">Dandadan 👽</button>
-                    <button class="filter-option" data-anime="dragonball">Dragon Ball 🐉</button>
-                    <button class="filter-option" data-anime="fireforce">Fire Force 🔥</button>
-                    <button class="filter-option" data-anime="games">Games 🎮</button>
-                    <button class="filter-option" data-anime="genshinimpact">Genshin Impact 🌈</button>
-                    <button class="filter-option" data-anime="jujutsu">Jujutsu Kaisen 🧙‍♂️</button>
-                    <button class="filter-option" data-anime="kimetsunoyaiba">Kimetsu no Yaiba 👹</button>
-                    <button class="filter-option" data-anime="myheroacademia">My Hero Academia 🦸</button>
-                    <button class="filter-option" data-anime="naruto">Naruto 🍥</button>
-                    <button class="filter-option" data-anime="onepiece">One Piece 🏴‍☠️</button>
-                    <button class="filter-option" data-anime="onepunchman">One-Punch Man 👊</button>
-                    <button class="filter-option" data-anime="pokemon">Pokémon ⚡</button>
-                    <button class="filter-option" data-anime="sololeveling">Solo Leveling 💀</button>
+
+            <div class="filter-container">
+                <div class="filter-selector">
+                    <button id="typeToggleBtn" class="filter-btn">Types ▼</button>
+                    <div id="typeDropdown" class="filter-dropdown hidden scrollable-dropdown">
+                        <button class="filter-option" data-type="all">🌐 All Types</button>
+                        <button class="filter-option" data-type="legs">🦵 Feet</button>
+                        <button class="filter-option" data-type="asian">🔥 Asian</button>
+                        <button class="filter-option" data-type="milf">💦 MILF</button>
+                    </div>
+                </div>
+                        
+                <div class="filter-selector">
+                    <button id="animeToggleBtn" class="filter-btn">Anime ▼</button>
+                    <div id="animeDropdown" class="filter-dropdown hidden scrollable-dropdown">
+                        <button class="filter-option" data-anime="all">All Anime 🌐</button>
+                        <button class="filter-option" data-anime="arcane">Arcane 🎭</button>
+                        <button class="filter-option" data-anime="blackclover">Black Clover 🍀</button>
+                        <button class="filter-option" data-anime="bleach">Bleach ⚔️</button>
+                        <button class="filter-option" data-anime="chainsawman">Chainsaw Man 🔪</button>
+                        <button class="filter-option" data-anime="dandadan">Dandadan 👽</button>
+                        <button class="filter-option" data-anime="dragonball">Dragon Ball 🐉</button>
+                        <button class="filter-option" data-anime="fireforce">Fire Force 🔥</button>
+                        <button class="filter-option" data-anime="games">Games 🎮</button>
+                        <button class="filter-option" data-anime="genshinimpact">Genshin Impact 🌈</button>
+                        <button class="filter-option" data-anime="jujutsu">Jujutsu Kaisen 🧙‍♂️</button>
+                        <button class="filter-option" data-anime="kimetsunoyaiba">Kimetsu no Yaiba 👹</button>
+                        <button class="filter-option" data-anime="myheroacademia">My Hero Academia 🦸</button>
+                        <button class="filter-option" data-anime="naruto">Naruto 🍥</button>
+                        <button class="filter-option" data-anime="onepiece">One Piece 🏴‍☠️</button>
+                        <button class="filter-option" data-anime="onepunchman">One-Punch Man 👊</button>
+                        <button class="filter-option" data-anime="pokemon">Pokémon ⚡</button>
+                        <button class="filter-option" data-anime="sololeveling">Solo Leveling 💀</button>
+
+                        <button class="filter-option" data-anime="zzz">Zenless Zone Zero</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     
     <!-- Модальное окно вне .top-bar -->
     <div id="cartModal" class="hidden">
@@ -1438,13 +1440,13 @@
                 <img src="photos/Evelyn_Azur_1.webp" alt="" class="img">
                 <p class="caption">Evelyn Azur 1 </p>
                 <span class="price"> 50 ⭐️</span>             
-                <button class="btn" data-id="225" data-label="Evelyn_Azur_1" data-price="50">Buy</button>
+                <button class="btn" data-id="225" data-label="Evelyn_Azur_1" data-price="50" data-anime="zzz">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Evelyn_Azur_2.webp" alt="" class="img">
                 <p class="caption">Evelyn Azur 2 </p>
                 <span class="price"> 50 ⭐️</span>             
-                <button class="btn" data-id="226" data-label="Evelyn_Azur_2" data-price="50">Buy</button>
+                <button class="btn" data-id="226" data-label="Evelyn_Azur_2" data-price="50" data-anime="zzz">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Faye.webp" alt="" class="img">
@@ -2972,7 +2974,7 @@
                 <img src="photos/Evelyn.webp" alt="" class="img">
                 <p class="caption">Evelyn </p>
                 <span class="price"> 35 ⭐️</span>             
-                <button class="btn" data-id="479" data-label="Evelyn" data-price="35">Buy</button>
+                <button class="btn" data-id="479" data-label="Evelyn" data-price="35"  data-anime="zzz">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Esdeath_2.webp" alt="" class="img">
@@ -3526,7 +3528,7 @@
                 <img src="photos/Evelyn_Chevalier.webp" alt="" class="img">
                 <p class="caption">Evelyn Chevalier </p>
                 <span class="price"> 25 ⭐️</span>             
-                <button class="btn" data-id="570" data-label="Evelyn_Chevalier" data-price="25">Buy</button>
+                <button class="btn" data-id="570" data-label="Evelyn_Chevalier" data-price="25"  data-anime="zzz">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Elizabeth_Liones.webp" alt="" class="img">
@@ -5067,7 +5069,7 @@
                 <img src="photos/Tsuyu_Asui.webp" alt="" class="img">
                 <p class="caption">Tsuyu Asui </p>
                 <span class="price"> 45 ⭐️</span>             
-                <button class="btn" data-id="824" data-label="Tsuyu_Asui" data-price="45">Buy</button>
+                <button class="btn" data-id="824" data-label="Tsuyu_Asui" data-price="45" data-anime="myheroacademia">Buy</button>
             </div>
             <div class="item">
                 <img src="photos/Vados_Bikini.webp" alt="" class="img">
@@ -6054,7 +6056,7 @@
             <img src="photos/Celia_Cumani_Aintree.webp" alt="" class="img">
             <p class="caption">Celia Cumani Aintree </p>
             <span class="price"> 30 ⭐️</span>             
-            <button class="btn" data-id="984" data-label="Celia_Cumani_Aintree" data-price="30" data-tags="legs">Buy</button>
+            <button class="btn" data-id="984" data-label="Celia_Cumani_Aintree" data-price="30" data-tags="legs"  data-anime="zzz">Buy</button>
         </div>
         <div class="item">
             <img src="photos/Dorothy_Unsworth.webp" alt="" class="img">
@@ -6274,7 +6276,492 @@
         </div>
 
 
+        <!-- 16.08.2025 -->
 
+
+        <div class="item">
+            <img src="photos/Akeno_5.webp" alt="" class="img">
+            <p class="caption">Akeno 5 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1021" data-label="Akeno_5" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Albedo_5.webp" alt="" class="img">
+            <p class="caption">Albedo 5 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1022" data-label="Albedo_5" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Blackcat_2.webp" alt="" class="img">
+            <p class="caption">Blackcat 2 </p>
+            <span class="price"> 40 ⭐️</span>             
+            <button class="btn" data-id="1023" data-label="Blackcat_2" data-price="40" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Boa_Hancock_5.webp" alt="" class="img">
+            <p class="caption">Boa Hancock 5 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1024" data-label="Boa_Hancock_5" data-price="50" data-anime="onepiece" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Cantarella.webp" alt="" class="img">
+            <p class="caption">Cantarella </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1025" data-label="Cantarella" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Daki_2.webp" alt="" class="img">
+            <p class="caption">Daki 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1026" data-label="Daki_2" data-price="50" data-anime="kimetsunoyaiba" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Faye_2.webp" alt="" class="img">
+            <p class="caption">Faye 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1027" data-label="Faye_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Hibana_Princess_2.webp" alt="" class="img">
+            <p class="caption">Hibana Princess 2 </p>
+            <span class="price"> 25 ⭐️</span>             
+            <button class="btn" data-id="1028" data-label="Hibana_Princess_2" data-price="25" data-anime="fireforce" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Hibana_Princess_3.webp" alt="" class="img">
+            <p class="caption">Hibana Princess 3 </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1029" data-label="Hibana_Princess_3" data-price="30" data-anime="fireforce" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Himiko_3.webp" alt="" class="img">
+            <p class="caption">Himiko 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1030" data-label="Himiko_3" data-price="50" data-anime="myheroacademia" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Hinata_7.webp" alt="" class="img">
+            <p class="caption">Hinata 7 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1031" data-label="Hinata_7" data-price="50" data-anime="naruto" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Jolyne_3.webp" alt="" class="img">
+            <p class="caption">Jolyne 3 </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1032" data-label="Jolyne_3" data-price="30" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Kushina_x_Naruto_2.webp" alt="" class="img">
+            <p class="caption">Kushina x Naruto 2 </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1033" data-label="Kushina_x_Naruto_2" data-price="30" data-anime="naruto" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Makima_5.webp" alt="" class="img">
+            <p class="caption">Makima 5 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1034" data-label="Makima_5" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Mama_Shuuko.webp" alt="" class="img">
+            <p class="caption">Mama Shuuko </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1035" data-label="Mama_Shuuko" data-price="50" data-tags="milf">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Marin_Kitagawa_4.webp" alt="" class="img">
+            <p class="caption">Marin Kitagawa 4 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1036" data-label="Marin_Kitagawa_4" data-price="35" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Medusa_3.webp" alt="" class="img">
+            <p class="caption">Medusa 3 </p>
+            <span class="price"> 45 ⭐️</span>             
+            <button class="btn" data-id="1037" data-label="Medusa_3" data-price="45" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Mikasa_3.webp" alt="" class="img">
+            <p class="caption">Mikasa 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1038" data-label="Mikasa_3" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Mirko_2.webp" alt="" class="img">
+            <p class="caption">Mirko 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1039" data-label="Mirko_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Mitsuri_Kanroji_3.webp" alt="" class="img">
+            <p class="caption">Mitsuri Kanroji 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1040" data-label="Mitsuri_Kanroji_3" data-price="50" data-anime="kimetsunoyaiba" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Mommy_Hinata.webp" alt="" class="img">
+            <p class="caption">Mommy Hinata </p>
+            <span class="price"> 40 ⭐️</span>             
+            <button class="btn" data-id="1041" data-label="Mommy_Hinata" data-price="40" data-anime="naruto" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Momo_Ayase_2.webp" alt="" class="img">
+            <p class="caption">Momo Ayase 2 </p>
+            <span class="price"> 45 ⭐️</span>             
+            <button class="btn" data-id="1042" data-label="Momo_Ayase_2" data-price="45" data-anime="dandadan" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nami_3.webp" alt="" class="img">
+            <p class="caption">Nami 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1043" data-label="Nami_3" data-price="50" data-anime="onepiece" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nejire_Hado.webp" alt="" class="img">
+            <p class="caption">Nejire Hado </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1044" data-label="Nejire_Hado" data-price="35" data-anime="myheroacademia" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nemu_2.webp" alt="" class="img">
+            <p class="caption">Nemu 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1045" data-label="Nemu_2" data-price="50" data-anime="bleach" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nico_Robin_5.webp" alt="" class="img">
+            <p class="caption">Nico Robin 5 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1046" data-label="Nico_Robin_5" data-price="35" data-anime="onepiece" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nico_Robin_6.webp" alt="" class="img">
+            <p class="caption">Nico Robin 6 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1047" data-label="Nico_Robin_6" data-price="35" data-anime="onepiece" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nico_Robin_7.webp" alt="" class="img">
+            <p class="caption">Nico Robin 7 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1048" data-label="Nico_Robin_7" data-price="50" data-anime="onepiece" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nino_Nakano.webp" alt="" class="img">
+            <p class="caption">Nino Nakano </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1049" data-label="Nino_Nakano" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nobara_Kugisaki_3.webp" alt="" class="img">
+            <p class="caption">Nobara Kugisaki 3 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1050" data-label="Nobara_Kugisaki_3" data-price="35" data-anime="jujutsu" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nobara_x_Maki.webp" alt="" class="img">
+            <p class="caption">Nobara x Maki </p>
+            <span class="price"> 40 ⭐️</span>             
+            <button class="btn" data-id="1051" data-label="Nobara_x_Maki" data-price="40" data-anime="jujutsu" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Retsu_2.webp" alt="" class="img">
+            <p class="caption">Retsu 2 </p>
+            <span class="price"> 45 ⭐️</span>             
+            <button class="btn" data-id="1052" data-label="Retsu_2" data-price="45" data-anime="bleach" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ochako_Uraraka_2.webp" alt="" class="img">
+            <p class="caption">Ochako Uraraka 2 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1053" data-label="Ochako_Uraraka_2" data-price="35" data-anime="myheroacademia" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ochako_Uraraka_3.webp" alt="" class="img">
+            <p class="caption">Ochako Uraraka 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1054" data-label="Ochako_Uraraka_3" data-price="50" data-anime="myheroacademia" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Orihime_4.webp" alt="" class="img">
+            <p class="caption">Orihime 4 </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1055" data-label="Orihime_4" data-price="30" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Orihime_x_Rangiku.webp" alt="" class="img">
+            <p class="caption">Orihime x Rangiku </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1056" data-label="Orihime_x_Rangiku" data-price="30" data-anime="bleach" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Raiden_Shogun.webp" alt="" class="img">
+            <p class="caption">Raiden Shogun </p>
+            <span class="price"> 25 ⭐️</span>             
+            <button class="btn" data-id="1057" data-label="Raiden_Shogun" data-price="25" data-anime="genshinimpact" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ranni.webp" alt="" class="img">
+            <p class="caption">Ranni </p>
+            <span class="price"> 25 ⭐️</span>             
+            <button class="btn" data-id="1058" data-label="Ranni" data-price="25" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rei_Miyamoto.webp" alt="" class="img">
+            <p class="caption">Rei Miyamoto </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1059" data-label="Rei_Miyamoto" data-price="30" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rem_ReZero_2.webp" alt="" class="img">
+            <p class="caption">Rem ReZero 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1060" data-label="Rem_ReZero_2" data-price="50" data-tags="">Buy</button>
+        </div>
+
+
+
+        <div class="item">
+            <img src="photos/Asami_Sato_2.webp" alt="" class="img">
+            <p class="caption">Asami Sato 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1061" data-label="Asami_Sato_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Azula_2.webp" alt="" class="img">
+            <p class="caption">Azula 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1062" data-label="Azula_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Chel_4.webp" alt="" class="img">
+            <p class="caption">Chel 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1063" data-label="Chel_4" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Dia_Song.webp" alt="" class="img">
+            <p class="caption">Dia Song </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1064" data-label="Dia_Song" data-price="50" data-tags="milf">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Dva_3.webp" alt="" class="img">
+            <p class="caption">Dva 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1065" data-label="Dva_3" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Dva_4.webp" alt="" class="img">
+            <p class="caption">Dva 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1066" data-label="Dva_4" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Esil_2.webp" alt="" class="img">
+            <p class="caption">Esil 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1067" data-label="Esil_2" data-price="50" data-anime="sololeveling" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Fern_5.webp" alt="" class="img">
+            <p class="caption">Fern 5 </p>
+            <span class="price"> 15 ⭐️</span>             
+            <button class="btn" data-id="1068" data-label="Fern_5" data-price="15" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Frieren_2.webp" alt="" class="img">
+            <p class="caption">Frieren 2 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1069" data-label="Frieren_2" data-price="35" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Hu_Tao.webp" alt="" class="img">
+            <p class="caption">Hu Tao </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1070" data-label="Hu_Tao" data-price="50" data-anime="genshinimpact" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Jinx_4.webp" alt="" class="img">
+            <p class="caption">Jinx 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1071" data-label="Jinx_4" data-price="50" data-anime="arcane" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Keqing.webp" alt="" class="img">
+            <p class="caption">Keqing </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1072" data-label="Keqing" data-price="50" data-anime="arcane" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Kiriko_2.webp" alt="" class="img">
+            <p class="caption">Kiriko 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1073" data-label="Kiriko_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Lucy_Cyberpunk_3.webp" alt="" class="img">
+            <p class="caption">Lucy Cyberpunk 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1074" data-label="Lucy_Cyberpunk_3" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Maleficienta_2.webp" alt="" class="img">
+            <p class="caption">Maleficienta 2 </p>
+            <span class="price"> 10 ⭐️</span>             
+            <button class="btn" data-id="1075" data-label="Maleficienta_2" data-price="10" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Matoi_Ryuuko_4.webp" alt="" class="img">
+            <p class="caption">Matoi Ryuuko 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1076" data-label="Matoi_Ryuuko_4" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Matoi_Ryuuko_5.webp" alt="" class="img">
+            <p class="caption">Matoi Ryuuko 5 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1077" data-label="Matoi_Ryuuko_5" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Momo_Ayase_3.webp" alt="" class="img">
+            <p class="caption">Momo Ayase 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1078" data-label="Momo_Ayase_3" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nemu_3.webp" alt="" class="img">
+            <p class="caption">Nemu 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1079" data-label="Nemu_3" data-price="50" data-anime="bleach" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nezuko_Kamado_2.webp" alt="" class="img">
+            <p class="caption">Nezuko Kamado 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1080" data-label="Nezuko_Kamado_2" data-price="50" data-anime="kimetsunoyaiba" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Nezuko_Kamado_3.webp" alt="" class="img">
+            <p class="caption">Nezuko Kamado 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1081" data-label="Nezuko_Kamado_3" data-price="50" data-anime="kimetsunoyaiba" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ran_Akali_2.webp" alt="" class="img">
+            <p class="caption">Ran Akali 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1082" data-label="Ran_Akali_2" data-price="50" data-tags="game">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ranni_2.webp" alt="" class="img">
+            <p class="caption">Ranni 2 </p>
+            <span class="price"> 20 ⭐️</span>             
+            <button class="btn" data-id="1083" data-label="Ranni_2" data-price="20" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ranni_3.webp" alt="" class="img">
+            <p class="caption">Ranni 3 </p>
+            <span class="price"> 45 ⭐️</span>             
+            <button class="btn" data-id="1084" data-label="Ranni_3" data-price="45" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Ranni_4.webp" alt="" class="img">
+            <p class="caption">Ranni 4 </p>
+            <span class="price"> 30 ⭐️</span>             
+            <button class="btn" data-id="1085" data-label="Ranni_4" data-price="30" data-tags="legs">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rapunzel_Mom_Gothel.webp" alt="" class="img">
+            <p class="caption">Rapunzel Mom Gothel </p>
+            <span class="price"> 15 ⭐️</span>             
+            <button class="btn" data-id="1086" data-label="Rapunzel_Mom_Gothel" data-price="15" data-tags="milf">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rias_Gremory_3.webp" alt="" class="img">
+            <p class="caption">Rias Gremory 3 </p>
+            <span class="price"> 40 ⭐️</span>             
+            <button class="btn" data-id="1087" data-label="Rias_Gremory_3" data-price="40" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rika_Nonaka.webp" alt="" class="img">
+            <p class="caption">Rika Nonaka </p>
+            <span class="price"> 20 ⭐️</span>             
+            <button class="btn" data-id="1088" data-label="Rika_Nonaka" data-price="20" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Rogue_4.webp" alt="" class="img">
+            <p class="caption">Rogue 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1089" data-label="Rogue_4" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Saeko_Busujima_4.webp" alt="" class="img">
+            <p class="caption">Saeko Busujima 4 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1090" data-label="Saeko_Busujima_4" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Sakura_3.webp" alt="" class="img">
+            <p class="caption">Sakura 3 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1091" data-label="Sakura_3" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Solo_Leveling_set.webp" alt="" class="img">
+            <p class="caption">Solo Leveling set </p>
+            <span class="price"> 40 ⭐️</span>             
+            <button class="btn" data-id="1092" data-label="Solo_Leveling_set" data-price="40" data-anime="sololeveling" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Tifa_Lockhart_4.webp" alt="" class="img">
+            <p class="caption">Tifa Lockhart 4 </p>
+            <span class="price"> 45 ⭐️</span>             
+            <button class="btn" data-id="1093" data-label="Tifa_Lockhart_4" data-price="45" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Toph_3.webp" alt="" class="img">
+            <p class="caption">Toph 3 </p>
+            <span class="price"> 20 ⭐️</span>             
+            <button class="btn" data-id="1094" data-label="Toph_3" data-price="20" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Triss_2.webp" alt="" class="img">
+            <p class="caption">Triss 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1095" data-label="Triss_2" data-price="50" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Tsunade_6.webp" alt="" class="img">
+            <p class="caption">Tsunade 6 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1096" data-label="Tsunade_6" data-price="50" data-anime="naruto" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Tsunade_Nurse.webp" alt="" class="img">
+            <p class="caption">Tsunade Nurse </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1097" data-label="Tsunade_Nurse" data-price="35" data-anime="naruto" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Tsuyu_Asui_2.webp" alt="" class="img">
+            <p class="caption">Tsuyu Asui 2 </p>
+            <span class="price"> 35 ⭐️</span>             
+            <button class="btn" data-id="1098" data-label="Tsuyu_Asui_2" data-price="35" data-anime="myheroacademia" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Utahime_Iori.webp" alt="" class="img">
+            <p class="caption">Utahime Iori </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1099" data-label="Utahime_Iori" data-price="50" data-anime="jujutsu" data-tags="">Buy</button>
+        </div>
+        <div class="item">
+            <img src="photos/Utahime_Iori_2.webp" alt="" class="img">
+            <p class="caption">Utahime Iori 2 </p>
+            <span class="price"> 50 ⭐️</span>             
+            <button class="btn" data-id="1100" data-label="Utahime_Iori_2" data-price="50" data-anime="jujutsu" data-tags="">Buy</button>
+        </div>
 
 
 
